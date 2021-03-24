@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <h1>Bonjour {{ user.firstName }}</h1>
+    <h2>Vos informations personnelles :</h2>
+    <p>Email : {{ user.email }}</p>
+    <p>Nom : {{ user.lastName }}</p>
+    <p>Prénom : {{ user.firstName }}</p>
+    <p>Vos parties</p>
+    <br>
+
+    {% for games in playedgames %}
+        {% for infogame in games %}
+            <div>
+                {% if infogame.winner.id == app.user.id %}
+                    <p>Vous avez gagné cette partie contre {{  }}</p>
+                {% else %}
+                    <p>Vous avez perdu cette partie</p>
+                {% endif %}
+                <p>{{ infogame.created|date("Y-m-d H:i:s") }}</p>
+            </div>
+            <br>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
