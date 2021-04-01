@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="654.563" height="224.25" viewBox="0 0 654.563 224.25">
+  <defs>
+    <filter id="Tracé_581" x="0" y="0" width="654.563" height="224.25" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Groupe_39" data-name="Groupe 39" transform="translate(2 3)">
+    <g transform="matrix(1, 0, 0, 1, -2, -3)" filter="url(#Tracé_581)">
+      <path id="Tracé_581-2" data-name="Tracé 581" d="M607.346,138.75H467.721a33.188,33.188,0,1,1,0-66.375h138.5A33.188,33.188,0,1,0,606.22,6h-563C24.638,7.125,10,21.75,10,40.313A33.263,33.263,0,0,0,43.217,73.5H326.408a33.188,33.188,0,1,1,0,66.375H207.614a33.188,33.188,0,1,0,0,66.375H607.346a33.263,33.263,0,0,0,33.217-33.187C640,153.938,625.362,138.75,607.346,138.75Z" transform="translate(2 3)" fill="#eadacc"/>
+    </g>
+  </g>
+</svg>

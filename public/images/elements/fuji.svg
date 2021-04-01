@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1927.241" viewBox="0 0 1920 1927.241">
+  <defs>
+    <filter id="Tracé_579" x="351.894" y="0" width="564.879" height="199.272" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Groupe_36" data-name="Groupe 36" transform="translate(0 -479.772)">
+    <path id="Tracé_577" data-name="Tracé 577" d="M1931,419.823V2042.2H11V419.823s207.052-58.879,371.914-152.837c69.977-39.9,132.274-86.081,167.742-136.744H715.574s36.654,56.613,166.5,119.8C1045.806,329.775,1357.682,419.823,1931,419.823Z" transform="translate(-11 364.814)" fill="#246867"/>
+    <g id="Groupe_34" data-name="Groupe 34" transform="translate(369.894 494.772)">
+      <g transform="matrix(1, 0, 0, 1, -369.89, -15)" filter="url(#Tracé_579)">
+        <path id="Tracé_579-2" data-name="Tracé 579" d="M911.368,262.5l-2.267,1.815-97.843-14.967-55.24,35.376-54.955-28.346L639.308,293.23l-45.324-28.912L519.2,293.23l-56.656-36.849-78.467,13.492-1.587-1.927c69.4-41.839,132.744-89.233,169.57-137.988h166S781.457,197.932,911.368,262.5Z" transform="translate(-12.6 -114.96)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
