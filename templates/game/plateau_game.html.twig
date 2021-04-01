@@ -2,7 +2,7 @@
     <div class="col-8">
         Cartes de l'adversaire
         {% for card in adversaire.handCards %}
-            {#  <img style="width: 50px; transform: rotate(180deg)" src="{{ asset('img_carte_jeu/dos.png') }}">#}
+             <img style="width: 50px; transform: rotate(180deg)" src="{{ asset('img_carte_jeu/dos.png') }}">
             {# <span style="border: 1px solid black; margin:3px; padding:5px">
                 {{ cards[card].number }}
             </span> #}
@@ -19,7 +19,7 @@
     {% for i in 1..7 %}
         <div class="col-1">
                 <span style="margin:3px; padding:5px">
-                    {# <img style="width: 70px;" src="{{ asset('img_carte_centre/image'~ i ~'.png' ) }}"> #}
+                     <img style="width: 70px;" src="{{ asset('img_carte_centre/image'~ i ~'.png' ) }}">
                 </span>
         </div>
     {% endfor %}
@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-8">
         {% for card in moi.handCards %}
-            {# <img style="width: 50px;" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">#}
+            <img style="width: 50px;" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
             <span style="margin:3px; padding:5px">
             {#  {{ cards[card].number }} #}
                     <input type="radio" name="carte_secret" value="{{ card }}"
