@@ -39,16 +39,19 @@
                            class="choixSecret">
                     <input type="checkbox" name="carte_depot" value="{{ card }}"
                            style="display: none"
-                           class="choixdepot">
+                           class="choixDepot">
+                    <input type="checkbox" name="carte_offre" value="{{ card }}"
+                           style="display: none"
+                           class="choixOffre">
                 </span>
         {% endfor %}
     </div>
     <div class="col-4 action">
         Mes Actions
-        <button id="secret" disabled>Secret</button>
-        <button  id="depot" disabled>Depot</button>
-        <button  id="offre" disabled>Offre</button>
-        <button  id="echange" disabled>Echange</button><br>
-        <button id="valider" style="display: none" disabled>Valider action</button>
+        <button id="secret" >Secret</button>
+        <button  id="depot" >Depot</button>
+        <button  id="offre" >Offre</button>
+        <button  id="echange" >Echange</button><br>
+        <button id="valider" style="display: none" >Valider action</button>
     </div>
 </div>

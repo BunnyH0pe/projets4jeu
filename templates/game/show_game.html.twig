@@ -19,13 +19,6 @@
     boucle = setInterval(refreshGame, 3000);
   })
 
-  $(document).on('click', '#valider', function() {
-
-    //mettre à jour game en changeant quiJoue
-    //Bloquer le plateau (overlay, ...)
-    //Relancer le timer...
-  })
-
   function refreshGame() {
     $.ajax({
       url: "{{ path('get_tour', {game: game.id}) }}",
@@ -33,10 +26,10 @@
         console.log(data)
         if (data == false) {
           $('#message').html('Tour de votre adversaire')
+          $('.action button').prop("disabled",true);
         } else {
+          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
           $('#message').html('C\'est mon tour...')
-          $('.action button').removeAttr('disabled');
-          //mettre à jour le plateau, dès que je récupère true
           clearInterval(boucle)
         }
       },
@@ -57,12 +50,19 @@
     $(document).on('click', '#depot', function(){
       console.log('depot')
       action = 'depot' //mémorise l'action en cours
-      $('.choixdepot').show()
+      $('.choixDepot').show()
+      $('#valider').show()
+    })
+
+    $(document).on('click', '#offre', function(){
+      console.log('offre')
+      action = 'offre' //mémorise l'action en cours
+      $('.choixOffre').show()
       $('#valider').show()
     })
 
     $(document).on('click', '#valider', function(){
-      if ( ($("input[type=radio]:checked").length > 0) || ($("input[type=checkbox]:checked").length == 2) ) {
+      if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3)  ) {
         var event = 'clicked';
         switch (action) {
           case 'secret':
@@ -76,7 +76,7 @@
               $.each($("input[name='carte_depot']:checked"), function(){
                 depot.push($(this).val());
               });
-              console.log(depot)
+              console.log(depot[0])
             donneesAction = {
               action: 'depot',
               carte1: depot[0],
@@ -84,7 +84,17 @@
             }
             break;
           case 'offre':
-
+            var offre = [];
+            $.each($("input[name='carte_offre']:checked"), function(){
+              offre.push($(this).val());
+            });
+            console.log(offre[0])
+            donneesAction = {
+              action: 'offre',
+              carte1: offre[0],
+              carte2 : offre[1],
+              carte3 : offre[2],
+            }
             break;
           case 'echange':
 
@@ -92,6 +102,19 @@
         }
 
         console.log(event);
+
+        $.ajax({
+          url: "{{ path('action_game', {game: game.id}) }}",
+          data: donneesAction,
+          method: 'POST',
+          success: function(data) {
+            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+          },
+          error: function(){
+
+          }
+        })
+
         $.ajax({
           url: "{{ path('change_tour', {game: game.id}) }}",
           data: 'event=' + event ,
@@ -104,20 +127,6 @@
           },
           error: function(){
             console.log('Il y a un problème')
-          }
-        })
-
-        $.ajax({
-          url: "{{ path('action_game', {game: game.id}) }}",
-          data: donneesAction,
-          method: 'POST',
-          success: function(data) {
-              if (data == true) {
-                $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-              }
-          },
-          error: function(){
-
           }
         })
       }else{
