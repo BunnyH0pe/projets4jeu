@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-8">
         Cartes de l'adversaire
-        {% for card in set.user2HandCards %}
+        {% for card in adversaire.handCards %}
             {# <img src="{{ asset('cartes/'~cards[card].picture) }}"> #}
             <span style="border: 1px solid black; margin:3px; padding:5px">
                 {{ cards[card].number }}
@@ -30,22 +30,25 @@
 </div>
 <div class="row">
     <div class="col-8">
-        {% for card in set.user1HandCards %}
+        {% for card in moi.handCards %}
             {# <img src="{{ asset('cartes/'~cards[card].picture) }}"> #}
             <span style="border: 1px solid black; margin:3px; padding:5px">
                 {{ cards[card].number }}
                     <input type="radio" name="carte_secret" value="{{ card }}"
                            style="display: none"
                            class="choixSecret">
+                    <input type="checkbox" name="carte_depot" value="{{ card }}"
+                           style="display: none"
+                           class="choixdepot">
                 </span>
         {% endfor %}
     </div>
-    <div class="col-4">
+    <div class="col-4 action">
         Mes Actions
-        <button id="secret">Secret</button>
-        <button  id="depot">Depot</button>
-        <button  id="offre">Offre</button>
-        <button  id="echange">Echange</button><br>
-        <button id="valider" style="display: none">Valider action</button>
+        <button id="secret" disabled>Secret</button>
+        <button  id="depot" disabled>Depot</button>
+        <button  id="offre" disabled>Offre</button>
+        <button  id="echange" disabled>Echange</button><br>
+        <button id="valider" style="display: none" disabled>Valider action</button>
     </div>
 </div>

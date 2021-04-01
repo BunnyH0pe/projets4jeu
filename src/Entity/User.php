@@ -64,6 +64,12 @@ class User implements UserInterface
     private $age;
 
     /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $avatar;
+
+
+    /**
      * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user1")
      */
     private $games1;
@@ -184,13 +190,21 @@ class User implements UserInterface
         return $this->gender;
     }
 
-    /**
-     * @param mixed $gender
-     */
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
 
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar):self
+    {
+        $this->avatar = $avatar;
         return $this;
     }
 

@@ -48,12 +48,21 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('firstname')
             ->add('lastname')
+            ->add('avatar', ChoiceType::class,[
+                'expanded'=> true,
+                'choices' => [
+                    '1' => 'lol.png',
+                    '2' => 'pap.png',
+                    '3' => 'lol.png',
+                ],
+            ])
             ->add('gender', ChoiceType::class,[
                 'choices' => [
                     'Homme' => 'male',
                     'Femme' => 'female',
                     'Non défini' => 'undef',
                 ],
+
             ])
             ->add('birthday', BirthdayType::class, [
             'placeholder' => [
