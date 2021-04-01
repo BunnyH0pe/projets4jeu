@@ -12,9 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ce872b3f-03e2-410d-bb0f-0c9ab337293c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,7 @@
       <workItem from="1617108224883" duration="12525000" />
       <workItem from="1617178177314" duration="3039000" />
       <workItem from="1617262898389" duration="226000" />
-      <workItem from="1617280787411" duration="17315000" />
+      <workItem from="1617280787411" duration="18360000" />
     </task>
     <task id="LOCAL-00001" summary="action">
       <created>1616579686841</created>
@@ -210,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617297256799</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="final homepage">
+      <created>1617299268211</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617299268211</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +240,8 @@
     <MESSAGE value="Back du formulaire" />
     <MESSAGE value="Changement de tour et action 2(en cours)" />
     <MESSAGE value="action 3(en cours)" />
-    <option name="LAST_COMMIT_MESSAGE" value="action 3(en cours)" />
+    <MESSAGE value="final homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="final homepage" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616493356767">
@@ -248,10 +256,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616693578332" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617297258779">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617299275850">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617297258779" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617299275850" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1616498664315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

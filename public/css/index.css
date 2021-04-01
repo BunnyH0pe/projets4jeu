@@ -21,13 +21,15 @@ body {
 /*              HEADER            */
 header nav {
   position: relative;
-  margin: 25px 0;
+  padding: 25px 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
   column-gap: 5%;
+  background: #1A1F2C;
 }
+
 header ul {
   column-gap: 50px;
   font-size: 1.25em;
