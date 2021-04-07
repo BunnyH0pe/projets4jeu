@@ -4,24 +4,116 @@
 
 {% block body %}
     <h1>Bonjour {{ user.firstName }}</h1>
+    <!--<img src="{{ asset('img_avatar/'~ user.avatar) }}" alt="image de profil du joueur">-->
     <h2>Vos informations personnelles :</h2>
-    <p>Email : {{ user.email }}</p>
-    <p>Nom : {{ user.lastName }}</p>
-    <p>Prénom : {{ user.firstName }}</p>
+    <p>Email :<span class="actualinfo" id="email"> {{ user.email }}</span> </p>
+    <p>Nom : <span class="actualinfo" id="lastnameinfo">{{ user.lastName }}</span></p> <button id="lastname">Modifier</button> <div class="modification" id="lastnamemodif" style="display: none;"><input id="inputlastname" type="text" value="{{ user.lastName }}"></div>
+    <p>Prénom : <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span></p> <button id="firstname">Modifier</button><div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="{{ user.firstName }}"></div>
+    <p>Genre : <span class="actualinfo" id="genderinfo">{{ user.gender }}</span></p> <button id="gender">Modifier</button><div class="modification" id="gendermodif" style="display: none;">
+    <select name="inputgender" id="inputgender">
+        {% if user.gender == 'male' %}
+            <option value="male">Homme</option>
+            <option value="female">Femme</option>
+            <option value="undef">Non défini</option>
+        {% elseif user.gender == 'female' %}
+            <option value="female">Femme</option>
+            <option value="male">Homme</option>
+            <option value="undef">Non défini</option>
+        {% else %}
+            <option value="undef">Non défini</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+        {% endif %}
+    </select></div>
+    <p>Date de naissance : <span class="actualinfo" id="birthdayinfo">{{ user.birthday|date("d/m/Y") }}</span></p> <button id="birthday">Modifier</button><div class="modification" id="birthdaymodif" style="display: none;"><input id="inputbirthday" type="date" value="{{ user.birthday|date('d/m/Y') }}"></div>
+    <button id="valider" style="display: none;">Sauvegarder mes changements</button>
+    <p class="reponse" id="reponse" style="display: none;"></p>
     <p>Vos parties</p>
     <br>
 
     {% for games in playedgames %}
-        {% for infogame in games %}
+        {% for infogame in games|sort|reverse %}
             <div>
-                {% if infogame.winner.id == app.user.id %}
-                    <p>Vous avez gagné cette partie</p>
+                <p>Partie n°{{ infogame.id }}</p>
+                {% if infogame.user1.id == user.id %}
+                    <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user2.firstName }} {{ infogame.user2.firstName }}</p>
                 {% else %}
-                    <p>Vous avez perdu cette partie</p>
+                    <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user1.firstName }} {{ infogame.user1.firstName }}</p>
                 {% endif %}
-                <p>{{ infogame.created|date("Y-m-d H:i:s") }}</p>
+                <span>{{ infogame.created|date("Y-m-d H:i:s") }}</span>
+                {% if infogame.winner != NULL %}
+                    <span> - {{ infogame.ended|date("Y-m-d H:i:s") }}</span>
+                    <p>Le joueur {{ infogame.winner.firstName }} a gagné !</p>
+                {% else %}
+                    <p>Partie non terminée !</p><a href="{{ path('show_game',{game: infogame.id})}}">Rejoindre dès maintenant !</a>
+                {% endif %}
             </div>
             <br>
         {% endfor %}
     {% endfor %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).on('click', '#lastname', function(){
+            console.log('lastname');
+            $(this).hide();
+            $('#lastnameinfo').hide();
+            $('#lastnamemodif').show();
+            $('#valider').show();
+        })
+
+        $(document).on('click', '#firstname', function(){
+            console.log('firstname');
+            $(this).hide();
+            $('#firstnameinfo').hide();
+            $('#firstnamemodif').show();
+            $('#valider').show();
+        })
+
+        $(document).on('click', '#gender', function(){
+            console.log('gender');
+            $(this).hide();
+            $('#genderinfo').hide();
+            $('#gendermodif').show();
+            $('#valider').show();
+        })
+
+        $(document).on('click', '#birthday', function(){
+            console.log('birthday');
+            $(this).hide();
+            $('#birthdayinfo').hide();
+            $('#birthdaymodif').show();
+            $('#valider').show();
+        })
+
+        $(document).on('click', '#valider', function(){
+            console.log('envoie de la requete ajax');
+            var lastname = $('#inputlastname').val();
+            var firstname = $('#inputfirstname').val();
+            var gender = $('#inputgender').val();
+            var birthday = $('#inputbirthday').val();
+            var donnesModif = {lastname:lastname, firstname:firstname, gender:gender, birthday:birthday};
+            // REQUETE AJAX A VOIR
+            console.log(lastname);
+            $.ajax({
+                url: "{{ path('info_modif') }}",
+                data: donnesModif,
+                method: 'POST',
+                success: function() {
+                    console.log('C\'est passé');
+                    $('.modification').hide();
+                    $('.actualinfo').show();
+                    $('#valider').hide();
+                    $('#reponse').show();
+                    document.location.reload();
+                    $('#reponse').html('Données mises à jour !');
+                },
+                error: function(){
+                    console.log('C\'est pas passé');
+                    $('#reponse').show();
+                    $('#reponse').html('Une erreur c\'est produite !')
+                }
+            })
+        })
+    </script>
 {% endblock %}
