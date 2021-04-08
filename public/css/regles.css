@@ -1,0 +1,104 @@
+/*                                  INIT                                   */
+/*                                 Variables                               */
+/*                                                                         */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: #1A1F2C;
+  font-family: "Nunito", sans-serif;
+}
+
+#regles h2, #container_game h1 {
+  font-family: "Merienda", cursive;
+  font-weight: lighter;
+}
+/*          JOUER             */
+/*                  JEU                     */
+#container_game {
+  position: relative;
+  margin-top: 50px;
+  width: 100vw;
+  height: fit-content;
+  padding: 50px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+#container_game .sakura {
+  position: absolute;
+  bottom: 0px;
+  transform: rotateZ(-140deg) translateX(-50%);
+  width: 1000px;
+  z-index: 0;
+}
+#container_game .flower {
+  position: absolute;
+  width: 75px;
+}
+#container_game .f1 {
+  left: 1%;
+  bottom: 0;
+}
+#container_game .f2 {
+  right: 10%;
+  top: 5%;
+}
+#container_game .f3 {
+  left: 5%;
+  top: 10%;
+}
+#container_game .f4 {
+  left: 15%;
+  top: 50%;
+}
+#container_game h1 {
+  color: white;
+  font-size: 2em;
+  margin-top: 0;
+  z-index: 1;
+}
+
+#b_game {
+  position: relative;
+  width: 720px;
+  height: 480px;
+  max-height: 100vh;
+  border: solid white 1px;
+}
+#b_game .bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: 480px;
+  max-height: 100vh;
+  background: black;
+  right: -0.5vw;
+  top: -0.5vw;
+  position: absolute;
+  overflow: hidden;
+}
+
+#regles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: white;
+}
+#regles h2 {
+  font-size: 2em;
+  margin-top: 100px;
+}
+#regles p {
+  margin: 100px 100px;
+}
+
+/*# sourceMappingURL=regles.css.map */

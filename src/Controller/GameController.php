@@ -301,7 +301,8 @@ class GameController extends AbstractController
                 $carte3 = $request->request->get('carte3');
                 if ($joueur === 1) {
                     $actions = $round->getUser1Action(); //un tableau...
-                    $actions['OFFRE'] = [$carte1, $carte2, $carte3]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['OFFRE']['cartesInitiales'] = [$carte1, $carte2, $carte3]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['OFFRE']['cartesAdversaire'] = [];
                     $round->setUser1Action($actions); //je mets à jour le tableau
                     $main = $round->getUser1HandCards();
                     $indexCarte1 = array_search($carte1, $main); //je récupère l'index de ma première carte a supprimer dans ma main
@@ -311,7 +312,8 @@ class GameController extends AbstractController
                     $round->setUser1HandCards($main);
                 }elseif ($joueur === 2){
                     $actions = $round->getUser2Action(); //un tableau...
-                    $actions['OFFRE'] = [$carte1, $carte2, $carte3]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['OFFRE']['cartesInitiales'] = [$carte1, $carte2, $carte3]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['OFFRE']['cartesAdversaire'] = [];
                     $round->setUser2Action($actions); //je mets à jour le tableau
                     $main = $round->getUser2HandCards();
                     $indexCarte1 = array_search($carte1, $main); //je récupère l'index de ma première carte a supprimer dans ma main

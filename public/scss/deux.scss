@@ -1,0 +1,163 @@
+/*                                  INIT                                   */
+
+/*                                 Variables                               */
+
+$yellow: #E4D1B5;
+$red: #BC383D;
+$black: #1A1F2C;
+$blue: #0B5758;
+$brown: #B68D6F;
+
+$shadow: 0 3px 5px rgba(0,0,0, 0.50);
+
+/*                                                                         */
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+%font_title {
+  font-family: 'Merienda', cursive;
+  font-weight: lighter;
+}
+
+@mixin flex($align, $justify, $direction) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+
+  flex-direction: $direction;
+}
+
+/*            PROFIL            */
+
+h2 {
+  @extend %font_title;
+  font-size: 2.5em;
+  margin-bottom: 50px;
+}
+
+#MaCarte {
+  margin: 60px 10vw 0 10vw;
+}
+
+.container_carte {
+  @include flex($align: center, $justify: flex-start, $direction: row);
+  width: 60%;
+  margin: 0 auto;
+  background-color: $yellow;
+  padding: 50px;
+  border: solid $red 10px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 35px 2px rgba(0,0,0,0.75);
+}
+
+.img_profil {
+  @include flex($align: center, $justify: center, $direction: column);
+  margin-right: 50px;
+
+  img {
+    width: 15vw;
+  }
+}
+
+.pseudo {
+  @include flex($align: center, $justify: flex-start, $direction: row);
+
+  h3 {
+    font-size: 3em;
+    margin: 0 0 20px 0;
+  }
+
+  p {
+    font-size: 0.8em;
+    color: $red;
+  }
+}
+
+.informations_about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.informations {
+  @include flex($align: center, $justify: flex-start, $direction: row);
+  font-size: 1.6em;
+
+  img {
+    height: 30px;
+    margin-left: 10px;
+  }
+}
+
+#MesRecompenses {
+  margin: 60px 10vw;
+}
+
+.container_recompenses {
+  @include flex($align: center, $justify: space-between, $direction: row);
+
+  div {
+    @include flex($align: center, $justify: center, $direction: column);
+
+    h3 {
+      font-size: 3em;
+      @extend %font_title;
+      margin: 10px 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.2em;
+    }
+
+    img {
+      width: 10vw;
+    }
+  }
+}
+
+/*            FOOTER            */
+
+footer {
+  background-color: $black;
+  @include flex($align: flex-end, $justify: space-between, $direction: row);
+  padding: 20px 10vw;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+.link_out {
+  text-transform: uppercase;
+}
+
+.second_footer {
+  height: 100%;
+  @include flex($align: flex-start, $justify: space-between, $direction: column);
+}
+
+.img_footer {
+  img {
+    width: 4vw;
+    margin-left: 20px;
+  }
+}

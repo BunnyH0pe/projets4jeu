@@ -21,6 +21,14 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/regles", name="regles")
+     */
+    public function regles(): Response
+    {
+        return $this->render('default/regles.html.twig');
+    }
+
+    /**
      * @Route("/mail", name="send_mail")
      */
     public function sendMail(MailerInterface $mailer)

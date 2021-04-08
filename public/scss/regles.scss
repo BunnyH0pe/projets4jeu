@@ -172,6 +172,7 @@ header {
   h1 {
     color: white;
     @extend %font_title;
+    font-size: 2em;
     margin-top: 0;
 
     z-index: 1;
@@ -207,67 +208,17 @@ header {
   }
 }
 
-/*            HAGAKURE            */
-
-#hagakure {
-
-  @include flex($align: center, $justify: space-around, $direction: row);
-
-  width: 100vw;
-  height: 500px;
+#regles {
+  @include flex($align: center, $justify: center, $direction: column);
 
   background: white;
-
-  div {
-    margin: 50px 0px 50px 175px;
-
-    h2 {
-      @extend %font_title;
-      font-size: 2em;
-    }
   
-    p {
-      font-size: 1.25em;
-    }
-  }
-
-  img {
-    width: 300px;
-    margin: 50px 175px 50px 0;
-  }
-  
-}
-
-#affrontez {
-  @include flex($align: center, $justify: space-around, $direction: column);
-  background: white;
-
   h2 {
     @extend %font_title;
-    font-size: 2.5em;
-    margin: 0px 0 150px 0px;
+    font-size: 2em;
+    margin-top: 100px;
   }
-
-  article {
-    @include flex($align: center, $justify: space-around, $direction: row);
-    column-gap: 100px;
-
-
-    div {
-      @include flex($align: center, $justify: center, $direction: column);
-      
-    
-      img {
-        width: 225px;
-        transition: 0.3s;
-
-        &:hover {
-          transform: scale(1.1) rotateZ(2deg);
-        }
-      }
-
-    }
+  p {
+    margin: 100px 100px;
   }
 }
-
-

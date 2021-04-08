@@ -3,7 +3,106 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>Bonjour {{ user.firstName }}</h1>
+    <section id="MaCarte">
+        <h2>Ma carte de samouraï</h2>
+        <div class="container_carte">
+            <div class="img_profil">
+                <img src="{{ asset('../images/profil/rond.png') }}" alt="Photo de profil">
+                <p>Changez votre image de <br>profil en cliquant dessus</p>
+            </div>
+            <div>
+                <div class="pseudo">
+                    <img src="" alt="">
+                    <h3>Porki</h3>
+                    <p>(Vous ne pouvez changer de pseudo)</p>
+                </div>
+                <div>
+                    <div class="informations_about">
+                        <div class="informations">
+                            <div>
+                                <p>Nom: <span class="actualinfo" id="lastnameinfo">{{ user.lastName }}</span></p>
+                                <div class="modification" id="lastnamemodif" style="display: none;"><input id="inputlastname" type="text" value="Gaurier"></div>
+                            </div>
+                            <a href=""><img src="{{ asset('../images/profil/settings.png') }}" alt="engrenages parametres"></a>
+                        </div>
+                        <div class="informations">
+                            <div>
+                                <p>Prénom: <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span></p>
+                                <div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="Domnin"></div>
+                            </div>
+                            <a href=""><img src="{{ asset('../images/profil/settings.png') }}" alt="engrenages parametres"></a>
+                        </div>
+                        <p class="informations">Age: 22ans</p>
+                        <div class="informations">
+                            <div>
+                                <p>Genre: <span class="actualinfo" id="genderinfo">{{ user.gender }}</span></p>
+                                <div class="modification" id="gendermodif" style="display: none;">
+                                    <select name="inputgender" id="inputgender">
+                                        {% if user.gender == 'male' %}
+                                            <option value="male">Homme</option>
+                                            <option value="female">Femme</option>
+                                            <option value="undef">Non défini</option>
+                                        {% elseif user.gender == 'female' %}
+                                            <option value="female">Femme</option>
+                                            <option value="male">Homme</option>
+                                            <option value="undef">Non défini</option>
+                                        {% else %}
+                                            <option value="undef">Non défini</option>
+                                            <option value="male">male</option>
+                                            <option value="female">female</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                            <a href=""><img src="{{ asset('../images/profil/settings.png') }}" alt="engrenages parametres"></a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="informations">
+                            <div>
+                                <p>Email: <span class="actualinfo" id="email"> {{ user.email }}</span></p>
+                                <div class="modification" id="mailmodif" style="display: none;"><input id="inputmail" type="email" value=""></div>
+                            </div>
+                            <a href=""><img src="{{ asset('../images/profil/settings.png') }}" alt="engrenages parametres"></a>
+                        </div>
+                        <div class="informations">
+                            <div>
+                                <p>Mot de passe:</p>
+                                <div class="modification" id="pwdmodif" style="display: none;"><input id="inputpwd" type="pwd" value=""></div>
+                            </div>
+                            <a href=""><img src="{{ asset('../images/profil/settings.png') }}" alt="engrenages parametres"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="MesRecompenses">
+        <h2>Mes récompenes</h2>
+        <div class="container_recompenses">
+            <div>
+                <img src="{{ asset('../images/profil/pictogamewin.svg') }}" alt="Coupe victoire">
+                <h3>30</h3>
+                <p>Parties gagnées</p>
+            </div>
+            <div>
+                <img src="{{ asset('../images/profil/pictolose.svg') }}" alt="Main qui tient un drapeau">
+                <h3>26</h3>
+                <p>Parties perdues</p>
+            </div>
+            <div>
+                <img src="{{ asset('../images/profil/pictotime.svg') }}" alt="Sablier">
+                <h3>15h00</h3>
+                <p>Temps de jeu</p>
+            </div>
+            <div>
+                <img src="{{ asset('../images/profil/pictovaleurs.svg') }}" alt="Cartes du jeu">
+                <h3>182</h3>
+                <p>Valeurs obtenues</p>
+            </div>
+        </div>
+    </section>
+    {# <h1>Bonjour {{ user.firstName }}</h1>
     <!--<img src="{{ asset('img_avatar/'~ user.avatar) }}" alt="image de profil du joueur">-->
     <h2>Vos informations personnelles :</h2>
     <p>Email :<span class="actualinfo" id="email"> {{ user.email }}</span> </p>
@@ -51,6 +150,7 @@
             <br>
         {% endfor %}
     {% endfor %}
+    #}
 {% endblock %}
 {% block javascripts %}
     <script>

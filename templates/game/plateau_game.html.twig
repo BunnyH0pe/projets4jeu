@@ -10,11 +10,33 @@
     </div>
     <div class="col-4">
         Actions
+        {% if adversaire.actions.SECRET == false %}
+            <img src="{{ asset('images/game/jetons/secret.png') }}" style="width: 50px;">
+        {% else %}
+            <button id="secret" >Secret off</button>
+        {% endif %}
+        {% if adversaire.actions.DEPOT == false %}
+            <img src="{{ asset('images/game/jetons/depot.png') }}" style="width: 50px;">
+        {% else %}
+            <button >Dépot off</button>
+        {% endif %}
+        {% if adversaire.actions.OFFRE == false %}
+            <img src="{{ asset('images/game/jetons/offre.png') }}" style="width: 50px;">
+        {% else %}
+            <button>Offre off</button>
+        {% endif %}
+        {% if adversaire.actions.ECHANGE == false %}
+            <img src="{{ asset('images/game/jetons/echange.png') }}" style="width: 50px;">
+        {% else %}
+            <button>Echange off</button>
+        {% endif %}
     </div>
 </div>
+
 <div class="row">
     Plateau adversaire
 </div>
+
 <div class="row">
     {% for i in 1..7 %}
         <div class="col-1">
@@ -23,11 +45,12 @@
                 </span>
         </div>
     {% endfor %}
-
 </div>
+
 <div class="row">
     Mon Plateau
 </div>
+
 <div class="row">
     <div class="col-8">
         {% for card in moi.handCards %}
@@ -48,14 +71,45 @@
     </div>
     <div class="col-4 action">
         Mes Actions
-        {% if moi.actions.SECRET != false %}
-            <button id="secret" >Secret</button>
+        {% if moi.actions.SECRET == false %}
+            <img src="{{ asset('images/game/jetons/secret.png') }}" style="cursor: pointer; width: 50px;" id="secret"  alt="Bouton secret">
         {% else %}
-            <button id="secret" >secret off</button>
+            <button id="secret" >Secret off</button>
         {% endif %}
-        <button  id="depot" >Depot</button>
-        <button  id="offre" >Offre</button>
-        <button  id="echange" >Echange</button><br>
+        {% if moi.actions.DEPOT == false %}
+            <img src="{{ asset('images/game/jetons/depot.png') }}" style="cursor: pointer; width: 50px;" id="depot"  alt="Bouton dépot">
+        {% else %}
+            <button >Dépot off</button>
+        {% endif %}
+        {% if moi.actions.OFFRE == false %}
+            <img src="{{ asset('images/game/jetons/offre.png') }}" style="cursor: pointer; width: 50px;" id="offre"  alt="Bouton Offre">
+        {% else %}
+            <button>Offre off</button>
+        {% endif %}
+        {% if moi.actions.ECHANGE == false %}
+            <img src="{{ asset('images/game/jetons/echange.png') }}" style="cursor: pointer; width: 50px;" id="echange"  alt="Bouton échange">
+        {% else %}
+            <button>Echange off</button>
+        {% endif %}
         <button id="valider" style="display: none" >Valider action</button>
     </div>
 </div>
+
+{% if adversaire.actions.OFFRE != false  %}
+    {% if adversaire.actions.OFFRE.cartesInitiales != [] %}
+        {% if adversaire.actions.OFFRE.cartesAdversaire == [] %}
+            <div class="row">
+                    <h4>Choissisez une carte</h4>
+                    {% for card in adversaire.actions.OFFRE.cartesInitiales %}
+                        <div class="col-1">
+                            <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
+                            <br>
+                            <input type="radio" value="{{ card }}">
+                        </div>
+                    {% endfor %}
+                    <br>
+                    <button class="col-2" id="validoffre">Valider mon choix</button>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}

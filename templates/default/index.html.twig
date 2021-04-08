@@ -8,6 +8,10 @@
     <section id="container_game">
 
         <img src="{{ asset('images/elements/tree.svg') }}" alt="sakura" class="sakura">
+        <img src="{{ asset('images/elements/flower.svg') }}" alt="flower" class="flower f1">
+        <img src="{{ asset('images/elements/flower.svg') }}" alt="flower" class="flower f2">
+        <img src="{{ asset('images/elements/flower.svg') }}" alt="flower" class="flower f3">
+        <img src="{{ asset('images/elements/flower.svg') }}" alt="flower" class="flower f4">
 
         <h1><span style="color: #BC383D; font-size: 1.5em;">Hagakure</span> , le jeu de cartes des samouraïs</h1>
         <div id="b_game">
@@ -17,12 +21,35 @@
     </section>
 
     <section id="hagakure">
-        <h2>Hagakure ?</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta beatae nam quasi, porro libero rerum sit, vitae expedita maxime voluptatem accusamus sequi, amet ex. Distinctio molestiae aliquid voluptas nihil numquam.</p>
+        <div>
+            <h2>Hagakure ?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta beatae nam quasi, porro libero rerum sit, vitae expedita maxime voluptatem accusamus sequi, amet ex. Distinctio molestiae aliquid voluptas nihil numquam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta beatae nam quasi, porro libero rerum sit, vitae expedita maxime voluptatem accusamus sequi, amet ex. Distinctio molestiae aliquid voluptas nihil numquam.</p>
+        </div>
+        <img src="{{ asset('images/elements/sam_bleu_fin.png') }}" alt="samourai">
     </section>
 
-    <script src="{{ asset('js/index.js') }}"></script>
+    <section id="affrontez">
+        <h2>Affrontez les meilleurs joueurs !</h2>
 
-    </body>
-    </html>
+        <article>
+
+            <div>
+                <img src="{{ asset('images/icons/pictostrat.svg') }}" alt="pictostrat">
+                <p>Développez vos propres stratégies</p>
+            </div>
+
+            <div>
+                <img src="{{ asset('images/icons/pictoranking.svg') }}" alt="pictostrat">
+                <p>Progressez dans le classement</p>
+            </div>
+
+            <div>
+                <img src="{{ asset('images/icons/pictogift.svg') }}" alt="pictostrat">
+                <p>Gagnez des éléments de personnalisation</p>
+            </div>
+
+        </article>
+
+    </section>
 {% endblock %}

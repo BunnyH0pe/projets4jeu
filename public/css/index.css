@@ -13,7 +13,7 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
-#hagakure h2, #container_game h1 {
+#affrontez h2, #hagakure div h2, #container_game h1 {
   font-family: "Merienda", cursive;
   font-weight: lighter;
 }
@@ -21,19 +21,19 @@ body {
 /*              HEADER            */
 header nav {
   position: relative;
-  padding: 25px 0;
+  padding: 35px 0;
+  background-color: #1A1F2C;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
   column-gap: 5%;
-  background: #1A1F2C;
 }
-
 header ul {
   column-gap: 50px;
   font-size: 1.25em;
   text-transform: uppercase;
+  margin: 0;
 }
 header ul li {
   list-style: none;
@@ -89,6 +89,7 @@ header img:hover {
 /*          JOUER             */
 /*                  JEU                     */
 #container_game {
+  position: relative;
   margin-top: 50px;
   width: 100vw;
   height: fit-content;
@@ -97,15 +98,39 @@ header img:hover {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 #container_game .sakura {
   position: absolute;
-  bottom: -100px;
-  transform: rotateZ(-150deg) translateX(-50%);
+  bottom: 0px;
+  transform: rotateZ(-140deg) translateX(-50%);
   width: 1000px;
+  z-index: 0;
+}
+#container_game .flower {
+  position: absolute;
+  width: 75px;
+}
+#container_game .f1 {
+  left: 1%;
+  bottom: 0;
+}
+#container_game .f2 {
+  right: 10%;
+  top: 5%;
+}
+#container_game .f3 {
+  left: 5%;
+  top: 10%;
+}
+#container_game .f4 {
+  left: 15%;
+  top: 50%;
 }
 #container_game h1 {
   color: white;
+  margin-top: 0;
+  z-index: 1;
 }
 
 #b_game {
@@ -132,20 +157,57 @@ header img:hover {
 /*            HAGAKURE            */
 #hagakure {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
   width: 100vw;
   height: 500px;
   background: white;
 }
-#hagakure h2 {
-  font-size: 2em;
-  margin: 50px 400px;
+#hagakure div {
+  margin: 50px 0px 50px 175px;
 }
-#hagakure p {
-  margin: 0 400px;
+#hagakure div h2 {
+  font-size: 2em;
+}
+#hagakure div p {
   font-size: 1.25em;
+}
+#hagakure img {
+  width: 300px;
+  margin: 50px 175px 50px 0;
+}
+
+#affrontez {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background: white;
+}
+#affrontez h2 {
+  font-size: 2.5em;
+  margin: 0px 0 150px 0px;
+}
+#affrontez article {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  column-gap: 100px;
+}
+#affrontez article div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#affrontez article div img {
+  width: 225px;
+  transition: 0.3s;
+}
+#affrontez article div img:hover {
+  transform: scale(1.1) rotateZ(2deg);
 }
 
 /*# sourceMappingURL=index.css.map */
