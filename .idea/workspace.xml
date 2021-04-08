@@ -11,16 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce872b3f-03e2-410d-bb0f-0c9ab337293c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/default/regles.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +178,7 @@
       <workItem from="1617781452553" duration="1895000" />
       <workItem from="1617785983144" duration="6119000" />
       <workItem from="1617885594529" duration="15147000" />
-      <workItem from="1617905729070" duration="947000" />
+      <workItem from="1617905729070" duration="1484000" />
     </task>
     <task id="LOCAL-00001" summary="action">
       <created>1616579686841</created>
@@ -329,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617889668649</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="profil/all">
+      <created>1617906927213</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1617906927213</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +353,8 @@
     <MESSAGE value="final homepage" />
     <MESSAGE value="user" />
     <MESSAGE value="modif logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif logs" />
+    <MESSAGE value="profil/all" />
+    <option name="LAST_COMMIT_MESSAGE" value="profil/all" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617782585671">
@@ -374,10 +373,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616693578332" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617889670511">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617906929866">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617889670511" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617906929866" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1616498664315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
