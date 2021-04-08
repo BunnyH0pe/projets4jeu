@@ -17,6 +17,7 @@
   let boucle
   $(document).ready(function(){
     boucle = setInterval(refreshGame, 3000);
+    console.log('On démarre la boucle')
   })
 
   function refreshGame() {
@@ -31,6 +32,7 @@
           $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
           $('#message').html('C\'est mon tour...')
           clearInterval(boucle)
+          console.log('On arrete la boucle')
         }
       },
       error: function(){
@@ -123,6 +125,7 @@
             if (data == true){
               $('.action button').attr('disabled','disabled');
               boucle = setInterval(refreshGame, 3000);
+                console.log('On remet la boucle')
             }
           },
           error: function(){
