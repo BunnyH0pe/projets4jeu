@@ -106,18 +106,6 @@
         console.log(event);
 
         $.ajax({
-          url: "{{ path('action_game', {game: game.id}) }}",
-          data: donneesAction,
-          method: 'POST',
-          success: function(data) {
-
-          },
-          error: function(){
-
-          }
-        })
-
-        $.ajax({
           url: "{{ path('change_tour', {game: game.id}) }}",
           data: 'event=' + event ,
           method: 'POST',
@@ -132,6 +120,17 @@
             console.log('Il y a un problème')
           }
         })
+      $.ajax({
+          url: "{{ path('action_game', {game: game.id}) }}",
+          data: donneesAction,
+          method: 'POST',
+          success: function(data) {
+              $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+          },
+          error: function(){
+
+          }
+      })
       }else{
         alert('Vous n\'avez pas sélectionné de carte !');
       }
