@@ -48,7 +48,11 @@
     </div>
     <div class="col-4 action">
         Mes Actions
-        <button id="secret" >Secret</button>
+        {% if moi.actions.secret == false %}
+            <button id="secret" >Secret</button>
+        {% else %}
+            <button id="secret" >Secret off</button>
+        {% endif %}
         <button  id="depot" >Depot</button>
         <button  id="offre" >Offre</button>
         <button  id="echange" >Echange</button><br>
