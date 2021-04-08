@@ -111,9 +111,8 @@
           method: 'POST',
           success: function(data) {
             if (data == true){
-              $('.action button').attr('disabled','disabled');
               boucle = setInterval(refreshGame, 3000);
-                console.log('On remet la boucle')
+              console.log('On remet la boucle')
             }
           },
           error: function(){
@@ -125,7 +124,8 @@
           data: donneesAction,
           method: 'POST',
           success: function(data) {
-              $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+              $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+              $('.action button').attr('disabled','disabled');
           },
           error: function(){
 
