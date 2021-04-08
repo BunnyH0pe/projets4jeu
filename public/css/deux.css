@@ -116,39 +116,3 @@ h2 {
   width: 10vw;
 }
 
-/*            FOOTER            */
-footer {
-  background-color: #1A1F2C;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 20px 10vw;
-}
-footer a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.2em;
-}
-footer li {
-  margin-bottom: 10px;
-}
-
-.link_out {
-  text-transform: uppercase;
-}
-
-.second_footer {
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
-.img_footer img {
-  width: 4vw;
-  margin-left: 20px;
-}
-
-/*# sourceMappingURL=deux.css.map */

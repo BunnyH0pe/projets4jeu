@@ -6,6 +6,7 @@
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     {% block stylesheets %}
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Nunito:wght@200;300;400;600&display=swap" rel="stylesheet">
@@ -58,5 +59,27 @@
 <main class="container">
     {% block body %}{% endblock %}
 </main>
+<footer>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="{{ path('default') }}" class="link_out">Accueil</a></li>
+                <li><a href="{{ path('regles') }}" class="link_out">Règles</a></li>
+                <li><a href="{{ path('app_register') }}" class="link_out">Inscription</a></li>
+                <li><a href="{{ path('app_login') }}" class="link_out">Connexion</a></li>
+                <li><a href="">Retour en haut de la page</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="second_footer">
+        <a href="mailto:hagakure.gameiyo@gmail.com">Contactez-nous : contact@gmail.com</a>
+        <a href="">Mentions légales - CGV</a>
+    </div>
+    <div class="img_footer">
+        <a href="https://twitter.com/HagakureGame" target="_blank"><img src="{{ asset('images/logo_rs/logo_twitter.png') }}" alt="Twitter"></a>
+        <a href="https://www.instagram.com/hagakure.gameiyo/?hl=fr" target="_blank"><img src="{{ asset('images/logo_rs/logo_insta.png') }}" alt="Instagram"></a>
+        <a href="https://www.youtube.com/channel/UCrUpdMCz--XcBt2WkGv98zQ" target="_blank"><img src="{{ asset('images/logo_rs/logo_yt.png') }}" alt="Youtube"></a>
+    </div>
+</footer>
 </body>
 </html>

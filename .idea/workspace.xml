@@ -11,8 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce872b3f-03e2-410d-bb0f-0c9ab337293c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/css/footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/deux.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/deux.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +182,7 @@
       <workItem from="1617781452553" duration="1895000" />
       <workItem from="1617785983144" duration="6119000" />
       <workItem from="1617885594529" duration="15147000" />
-      <workItem from="1617905729070" duration="4619000" />
+      <workItem from="1617905729070" duration="5152000" />
     </task>
     <task id="LOCAL-00001" summary="action">
       <created>1616579686841</created>
@@ -378,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617910828421</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="profil/all">
+      <created>1617911202291</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1617911202291</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,10 +433,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616693578332" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617910829743">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617911203696">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617910829743" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617911203696" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1616498664315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
