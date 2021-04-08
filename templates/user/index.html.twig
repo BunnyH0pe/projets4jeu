@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/deux.css') }}"> <!--LINK TO THE CSS-->
-{% endblock %}
+<link rel="stylesheet" href="{{ asset('css/deux.css') }}"> <!--LINK TO THE CSS-->
 
 {% block title %}Profil{% endblock %}
 
@@ -85,22 +82,21 @@
         <h2>Mes récompenes</h2>
         <div class="container_recompenses">
             <div>
-                <img src="{{ asset('images/profil/pictogamewin.svg') }}" alt="Coupe victoire">
+                <img src="{{ asset('images/pictogamewin.svg') }}" alt="Coupe victoire">
                 <h3>30</h3>
                 <p>Parties gagnées</p>
-            </div>
             <div>
-                <img src="{{ asset('images/profil/pictolose.svg') }}" alt="Main qui tient un drapeau">
+                <img src="{{ asset('images/pictolose.svg') }}" alt="Main qui tient un drapeau">
                 <h3>26</h3>
                 <p>Parties perdues</p>
             </div>
             <div>
-                <img src="{{ asset('images/profil/pictotime.svg') }}" alt="Sablier">
+                <img src="{{ asset('images/pictotime.svg') }}" alt="Sablier">
                 <h3>15h00</h3>
                 <p>Temps de jeu</p>
             </div>
             <div>
-                <img src="{{ asset('images/profil/pictovaleurs.svg') }}" alt="Cartes du jeu">
+                <img src="{{ asset('images/pictovaleurs.svg') }}" alt="Cartes du jeu">
                 <h3>182</h3>
                 <p>Valeurs obtenues</p>
             </div>
