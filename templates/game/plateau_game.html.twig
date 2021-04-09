@@ -104,7 +104,7 @@
                         <div class="col-1">
                             <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
                             <br>
-                            <input type="radio" value="{{ card }}">
+                            <input type="radio" name="cartechoisieoffre" value="{{ card }}">
                         </div>
                     {% endfor %}
                     <br>

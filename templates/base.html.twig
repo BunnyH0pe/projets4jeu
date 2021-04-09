@@ -51,8 +51,13 @@
         </ul>
         <img src="{{ asset('images/logo_hagakure.png') }}">
         <ul>
-            <li><a href="{{ path('app_register') }}">Inscription</a></li>
-            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('user_profil') }}">Mon profil</a></li>
+                <li><a href="{{ path('app_logout') }}">Me déconnecter</a></li>
+            {% else %}
+                <li><a href="{{ path('app_register') }}" class="link_out">Inscription</a></li>
+                <li><a href="{{ path('app_login') }}" class="link_out">Connexion</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

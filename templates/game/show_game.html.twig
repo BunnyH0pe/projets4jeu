@@ -63,6 +63,26 @@
       $('#valider').show()
     })
 
+    {# Validation de l'offre #}
+    $(document).on('click', '#validoffre', function(){
+      donneesAction = {
+        action: 'offrevalid',
+        carte: $('input[name="cartechoisieoffre"]:checked').val()
+      }
+      
+      $.ajax({
+        url: "{{ path('action_game', {game: game.id}) }}",
+        data: donneesAction,
+        method: 'POST',
+        success: function(data) {
+          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+        },
+        error: function(){
+
+        }
+      })
+    })
+
     $(document).on('click', '#valider', function(){
       if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3)  ) {
         var event = 'clicked';

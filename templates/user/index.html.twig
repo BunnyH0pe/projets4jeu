@@ -24,23 +24,29 @@
                     <div class="informations_about">
                         <div class="informations">
                             <div>
-                                <p>Nom: <span class="actualinfo" id="lastnameinfo">{{ user.lastName }}</span></p>
-                                <div class="modification" id="lastnamemodif" style="display: none;"><input id="inputlastname" type="text" value="Gaurier"></div>
+                                <p>Nom: <br><span class="actualinfo" id="lastnameinfo">{{ user.lastName }}</span> <div class="modification" id="lastnamemodif" style="display: none;"><input id="inputlastname" type="text" value="{{ user.lastName }}"></div></p>
                             </div>
-                            <a href=""><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
+                            <a><img id="lastname" src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
                         </div>
                         <div class="informations">
                             <div>
-                                <p>Prénom: <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span></p>
-                                <div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="Domnin"></div>
+                                <p>Prénom: <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span><div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="Domnin"></div></p>
+
                             </div>
-                            <a href=""><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
+                            <a><img id="firstname" src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
                         </div>
-                        <p class="informations">Age: 22ans</p>
+                        <p class="informations">Age: <br> 22ans</p>
                         <div class="informations">
                             <div>
-                                <p>Genre: <span class="actualinfo" id="genderinfo">{{ user.gender }}</span></p>
-                                <div class="modification" id="gendermodif" style="display: none;">
+                                <p>Genre: <br> <span class="actualinfo" id="genderinfo">
+                                        {% if user.gender == 'male' %}
+                                            Homme
+                                        {% elseif user.gender == 'female' %}
+                                            Femme
+                                        {% elseif user.gender == 'undef'%}
+                                            Non-Binaire
+                                        {% endif %}
+                                    </span><div class="modification" id="gendermodif" style="display: none;">
                                     <select name="inputgender" id="inputgender">
                                         {% if user.gender == 'male' %}
                                             <option value="male">Homme</option>
@@ -56,31 +62,32 @@
                                             <option value="female">female</option>
                                         {% endif %}
                                     </select>
-                                </div>
+                                </div></p>
                             </div>
-                            <a href=""><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
+                            <a><img id="gender" src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
                         </div>
                     </div>
                     <div>
                         <div class="informations">
                             <div>
                                 <p>Email: <span class="actualinfo" id="email"> {{ user.email }}</span></p>
-                                <div class="modification" id="mailmodif" style="display: none;"><input id="inputmail" type="email" value=""></div>
                             </div>
-                            <a href=""><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
+                            <a></a>
                         </div>
                         <div class="informations">
                             <div>
                                 <p>Mot de passe:</p>
                                 <div class="modification" id="pwdmodif" style="display: none;"><input id="inputpwd" type="pwd" value=""></div>
                             </div>
-                            <a href=""><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
+                            <a><img src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <button id="valider" style="display: none;">Sauvegarder mes changements</button>
     </section>
+
 
     <section id="MesRecompenses">
         <h2>Mes récompenses</h2>
