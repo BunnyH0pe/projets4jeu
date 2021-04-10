@@ -325,6 +325,39 @@ class GameController extends AbstractController
                     $round->setUser2HandCards($main);
                 }
                 break;
+            case 'echange':
+                $carte1 = $request->request->get('carte1');
+                $carte2 = $request->request->get('carte2');
+                $carte3 = $request->request->get('carte3');
+                $carte4 = $request->request->get('carte4');
+                if ($joueur === 1) {
+                    $actions = $round->getUser1Action(); //un tableau...
+                    $actions['ECHANGE']['cartesInitiales']['premierdouble'] = [$carte1, $carte2]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'] = [$carte3, $carte4]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['ECHANGE']['cartesAdversaire'] = [];
+                    $round->setUser1Action($actions); //je mets à jour le tableau
+                    $main = $round->getUser1HandCards();
+                    $indexCarte1 = array_search($carte1, $main); //je récupère l'index de ma première carte a supprimer dans ma main
+                    $indexCarte2 = array_search($carte2, $main); //je récupère l'index de ma deuxième carte a supprimer dans ma main
+                    $indexCarte3 = array_search($carte3, $main); //je récupère l'index de ma troisième carte a supprimer dans ma main
+                    $indexCarte4 = array_search($carte4, $main); //je récupère l'index de ma troisième carte a supprimer dans ma main
+                    unset($main[$indexCarte1], $main[$indexCarte2], $main[$indexCarte3], $main[$indexCarte4]); //je supprime les cartes de ma main
+                    $round->setUser1HandCards($main);
+                }elseif ($joueur === 2){
+                    $actions = $round->getUser2Action(); //un tableau...
+                    $actions['ECHANGE']['cartesInitiales']['premierdouble'] = [$carte1, $carte2]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'] = [$carte3, $carte4]; //je sauvegarde les cartes masquées dans mes actions
+                    $actions['ECHANGE']['cartesAdversaire'] = [];
+                    $round->setUser2Action($actions); //je mets à jour le tableau
+                    $main = $round->getUser2HandCards();
+                    $indexCarte1 = array_search($carte1, $main); //je récupère l'index de ma première carte a supprimer dans ma main
+                    $indexCarte2 = array_search($carte2, $main); //je récupère l'index de ma deuxième carte a supprimer dans ma main
+                    $indexCarte3 = array_search($carte3, $main); //je récupère l'index de ma troisième carte a supprimer dans ma main
+                    $indexCarte4 = array_search($carte4, $main); //je récupère l'index de ma troisième carte a supprimer dans ma main
+                    unset($main[$indexCarte1], $main[$indexCarte2], $main[$indexCarte3], $main[$indexCarte4]); //je supprime les cartes de ma main
+                    $round->setUser2HandCards($main);
+                }
+                break;
             case 'offrevalid':
                 $carte = $request->request->get('carte');
                 if ($joueur === 1) {
@@ -333,7 +366,7 @@ class GameController extends AbstractController
                     $actions['OFFRE']['cartesAdversaire'] = [$carte];
                     dump($actions['OFFRE']['cartesInitiales']);
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
-                    unset($actions['OFFRE']['cartesInitiales'][$indexCarte]); //je supprime les cartes de ma main
+                    unset($actions['OFFRE']['cartesInitiales'][$indexCarte]);
                     dump($actions['OFFRE']['cartesAdversaire']);
                     dump( $tableaumoi['OFFRE']);
                     $round->setUser2Action($actions); //je mets à jour le tableau
@@ -347,6 +380,45 @@ class GameController extends AbstractController
                     dump($actions['OFFRE']['cartesInitiales']);
                     dump($actions['OFFRE']['cartesAdversaire']);
                     dump( $tableaumoi['OFFRE']);
+                    $round->setUser1Action($actions); //je mets à jour le tableau
+                }
+                break;
+
+            case 'echangevalid':
+                $groupe = $request->request->get('groupe');
+                if ($joueur === 1) {
+                    $actions = $round->getUser2Action(); //un tableau...
+                    if ($groupe == 'groupe1'){
+                        $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
+                        $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
+                        dump($actions['ECHANGE']['cartesInitiales']);
+                        dump($actions['ECHANGE']['cartesAdversaire']);
+                        unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
+                    }
+                    if ($groupe == 'groupe2'){
+                        $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
+                        $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
+                        dump($actions['ECHANGE']['cartesInitiales']);
+                        dump($actions['ECHANGE']['cartesAdversaire']);
+                        unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
+                    }
+                    $round->setUser2Action($actions); //je mets à jour le tableau
+                }elseif ($joueur === 2){
+                    $actions = $round->getUser1Action(); //un tableau...
+                    if ($groupe == 'groupe1'){
+                        $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
+                        $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
+                        dump($actions['ECHANGE']['cartesInitiales']);
+                        dump($actions['ECHANGE']['cartesAdversaire']);
+                        unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
+                    }
+                    if ($groupe == 'groupe2'){
+                        $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
+                        $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
+                        dump($actions['ECHANGE']['cartesInitiales']);
+                        dump($actions['ECHANGE']['cartesAdversaire']);
+                        unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
+                    }
                     $round->setUser1Action($actions); //je mets à jour le tableau
                 }
                 break;

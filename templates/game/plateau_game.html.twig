@@ -54,8 +54,8 @@
 <div class="row">
     <div class="col-8">
         {% for card in moi.handCards %}
-            <img style="width: 50px;" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
-            <span style="margin:3px; padding:5px">
+            <img style="width: 100px;margin:3px; padding:5px;" class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+            <span class="{{ cards[card].id }}" >
             {#  {{ cards[card].number }} #}
                     <input type="radio" name="carte_secret" value="{{ card }}"
                            style="display: none"
@@ -66,6 +66,9 @@
                     <input type="checkbox" name="carte_offre" value="{{ card }}"
                            style="display: none"
                            class="choixOffre">
+                    <input type="checkbox" name="carte_echange" value="{{ card }}"
+                        style="display: none"
+                        class="choixEchange">
                 </span>
         {% endfor %}
     </div>
@@ -95,6 +98,27 @@
     </div>
 </div>
 
+<div class="echangePop" style="display: none">
+    <h4>Choisissez un premier groupe de deux cartes :</h4>
+    <div style="display: flex;">
+        <div class="grp-1" style="display: flex; margin-right: 30px;">
+            <div style="height: 140px; width: 100px; background-color: red; border: 1px solid black; margin-right: 20px;"></div>
+            <div style="height: 140px; width: 100px; background-color: red; border: 1px solid black;"></div>
+        </div>
+        <div class="grp-2" style="display: flex">
+            <div style="height: 140px; width: 100px; border: 1px solid black; margin-right: 20px;"></div>
+            <div style="height: 140px; width: 100px; border: 1px solid black; "></div>
+        </div>
+    </div>
+    <div>
+        <button id="selectpremierdouble">Valider ce doublon</button>
+    </div>
+    <div class="validerenvoiechange">
+        <button style="display: none;" id="validerdouble">Envoyer l'offre</button>
+        <p>N'oubliez pas d'appuyer sur valider pour finir votre tour.</p>
+    </div>
+</div>
+
 {% if adversaire.actions.OFFRE != false  %}
     {% if adversaire.actions.OFFRE.cartesInitiales != [] %}
         {% if adversaire.actions.OFFRE.cartesAdversaire == [] %}
@@ -109,6 +133,35 @@
                     {% endfor %}
                     <br>
                     <button class="col-2" id="validoffre">Valider mon choix</button>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+
+{% if adversaire.actions.ECHANGE != false  %}
+    {% if adversaire.actions.ECHANGE.cartesInitiales != [] %}
+        {% if adversaire.actions.ECHANGE.cartesAdversaire == [] %}
+            <div class="row">
+                <h4>Choissisez un doublon</h4>
+                <div class="groupe1" style="display: flex">
+                    {% for card in adversaire.actions.ECHANGE.cartesInitiales.premierdouble %}
+                            <div class="col-1">
+                                <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
+                            </div>
+                    {% endfor %}
+                    <input type="radio" name="carteschoisiesechange" value="groupe1">
+                </div>
+                <div class="groupe2" style="display: flex">
+                    {% for card in adversaire.actions.ECHANGE.cartesInitiales.deuxiemedouble %}
+                        <div class="col-1">
+                            <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
+                        </div>
+                    {% endfor %}
+                    <input type="radio" name="carteschoisiesechange" value="groupe2">
+                </div>
+                <br>
+                <button class="col-2" id="validechange">Valider mon choix</button>
             </div>
         {% endif %}
     {% endif %}

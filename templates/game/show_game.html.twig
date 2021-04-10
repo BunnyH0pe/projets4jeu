@@ -40,7 +40,7 @@
       }
     })
   }
-
+  var echange = [];
   let action
     $(document).on('click', '#secret', function(){
       console.log('secret')
@@ -63,6 +63,39 @@
       $('#valider').show()
     })
 
+    $(document).on('click', '#echange', function(){
+      console.log('echange')
+      $('.choixEchange').show()
+      $('.echangePop').show()
+    })
+
+  {# Validation première sélection échange #}
+    $(document).on('click', '#selectpremierdouble', function(){
+      $('#selectpremierdouble').hide();
+      $.each($("input[name='carte_echange']:checked"), function(){
+        echange.push($(this).val());
+        $('.'+$(this).val()).hide();
+        $(this).prop("checked", false);
+      });
+      console.log(echange)
+      $('#validerdouble').show();
+    })
+
+    $(document).on('click', '#validerdouble', function(){
+      $.each($("input[name='carte_echange']:checked"), function(){
+        echange.push($(this).val());
+        $('.'+$(this).val()).hide();
+        $(this).prop("checked", false);
+      });
+      console.log(echange)
+      $('.choixEchange').hide()
+      $('.echangePop').hide();
+      $('#valider').show();
+
+      action = 'echange'
+    })
+
+
     {# Validation de l'offre #}
     $(document).on('click', '#validoffre', function(){
       donneesAction = {
@@ -83,8 +116,27 @@
       })
     })
 
+  $(document).on('click', '#validechange', function(){
+    donneesAction = {
+      action: 'echangevalid',
+      groupe: $('input[name="carteschoisiesechange"]:checked').val()
+    }
+
+    $.ajax({
+      url: "{{ path('action_game', {game: game.id}) }}",
+      data: donneesAction,
+      method: 'POST',
+      success: function(data) {
+        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+      },
+      error: function(){
+
+      }
+    })
+  })
+
     $(document).on('click', '#valider', function(){
-      if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3)  ) {
+      if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3) || ($("input.choixEchange[type=checkbox]:checked").length == 0) ) {
         var event = 'clicked';
         switch (action) {
           case 'secret':
@@ -119,7 +171,14 @@
             }
             break;
           case 'echange':
-
+            console.log('échange')
+            donneesAction = {
+              action: 'echange',
+              carte1: echange[0],
+              carte2 : echange[1],
+              carte3 : echange[2],
+              carte4 : echange[3],
+            }
             break;
         }
 
