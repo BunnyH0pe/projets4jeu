@@ -98,6 +98,16 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-8">
+        {% for groups in moi.board %}
+            {% for card in groups %}
+                <img style="width: 100px;margin:3px; padding:5px;" class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
 <div class="echangePop" style="display: none">
     <h4>Choisissez un premier groupe de deux cartes :</h4>
     <div style="display: flex;">

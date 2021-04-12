@@ -207,6 +207,7 @@ class GameController extends AbstractController
             $moi['actions'] = $game->getRounds()[0]->getUser1Action();
             $moi['board'] = $game->getRounds()[0]->getUser1BoardCards();
             dump($moi['actions']);
+            dump($moi['board']);
             $adversaire['handCards'] = $game->getRounds()[0]->getUser2HandCards();
             $adversaire['actions'] = $game->getRounds()[0]->getUser2Action();
             $adversaire['board'] = $game->getRounds()[0]->getUser2BoardCards();
@@ -218,6 +219,7 @@ class GameController extends AbstractController
             $adversaire['handCards'] = $game->getRounds()[0]->getUser1HandCards();
             $adversaire['actions'] = $game->getRounds()[0]->getUser1Action();
             $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
+            dump($moi['board']);
         } else {
             //redirection... je ne suis pas l'un des deux joueurs
         }
@@ -362,25 +364,29 @@ class GameController extends AbstractController
                 $carte = $request->request->get('carte');
                 if ($joueur === 1) {
                     $actions = $round->getUser2Action(); //un tableau...
-                    $tableaumoi = $round->getUser2Action(); //un tableau...
+                    $boardUser1 = $round->getUser1BoardCards();
+                    $boardUser2 = $round->getUser2BoardCards();
                     $actions['OFFRE']['cartesAdversaire'] = [$carte];
-                    dump($actions['OFFRE']['cartesInitiales']);
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
                     unset($actions['OFFRE']['cartesInitiales'][$indexCarte]);
-                    dump($actions['OFFRE']['cartesAdversaire']);
-                    dump( $tableaumoi['OFFRE']);
+                    $boardUser1[] = $actions['OFFRE']['cartesAdversaire'];
+                    $boardUser2[] = $actions['OFFRE']['cartesInitiales'];
+                    $round->setUser1BoardCards($boardUser1);
+                    $round->setUser2BoardCards($boardUser2);
                     $round->setUser2Action($actions); //je mets à jour le tableau
                 }elseif ($joueur === 2){
                     $actions = $round->getUser1Action(); //On selectionne le tableau de l'adversaire
-                    $tableaumoi = $round->getUser2Action(); //un tableau...
+                    $boardUser1 = $round->getUser1BoardCards();
+                    $boardUser2 = $round->getUser2BoardCards();
                     $actions['OFFRE']['cartesAdversaire'] = [$carte];
                     dump($actions['OFFRE']['cartesInitiales']);
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
                     unset($actions['OFFRE']['cartesInitiales'][$indexCarte]); //je supprime les cartes de ma main
-                    dump($actions['OFFRE']['cartesInitiales']);
-                    dump($actions['OFFRE']['cartesAdversaire']);
-                    dump( $tableaumoi['OFFRE']);
+                    $boardUser2[] = $actions['OFFRE']['cartesAdversaire'];
+                    $boardUser1[] = $actions['OFFRE']['cartesInitiales'];
                     $round->setUser1Action($actions); //je mets à jour le tableau
+                    $round->setUser1BoardCards($boardUser1);
+                    $round->setUser2BoardCards($boardUser2);
                 }
                 break;
 
@@ -388,23 +394,27 @@ class GameController extends AbstractController
                 $groupe = $request->request->get('groupe');
                 if ($joueur === 1) {
                     $actions = $round->getUser2Action(); //un tableau...
+                    $boardUser1 = $round->getUser1BoardCards();
+                    $boardUser2 = $round->getUser2BoardCards();
                     if ($groupe == 'groupe1'){
                         $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
-                        dump($actions['ECHANGE']['cartesInitiales']);
-                        dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
                     if ($groupe == 'groupe2'){
                         $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
-                        dump($actions['ECHANGE']['cartesInitiales']);
-                        dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
+                    $boardUser1[] = $actions['ECHANGE']['cartesAdversaire'];
+                    $boardUser2[] = $actions['ECHANGE']['cartesInitiales'];
+                    $round->setUser1BoardCards($boardUser1);
+                    $round->setUser2BoardCards($boardUser2);
                     $round->setUser2Action($actions); //je mets à jour le tableau
                 }elseif ($joueur === 2){
                     $actions = $round->getUser1Action(); //un tableau...
+                    $boardUser1 = $round->getUser1BoardCards();
+                    $boardUser2 = $round->getUser2BoardCards();
                     if ($groupe == 'groupe1'){
                         $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
@@ -419,6 +429,10 @@ class GameController extends AbstractController
                         dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
+                    $boardUser2[] = $actions['ECHANGE']['cartesAdversaire'];
+                    $boardUser1[] = $actions['ECHANGE']['cartesInitiales'];
+                    $round->setUser1BoardCards($boardUser1);
+                    $round->setUser2BoardCards($boardUser2);
                     $round->setUser1Action($actions); //je mets à jour le tableau
                 }
                 break;

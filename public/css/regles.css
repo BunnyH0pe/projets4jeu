@@ -97,8 +97,20 @@ body {
   font-size: 2em;
   margin-top: 100px;
 }
-#regles p {
-  margin: 100px 100px;
+#regles article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+#regles article img {
+  width: 35%;
+  transition: 0.3s;
+}
+#regles article img:hover {
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=regles.css.map */
