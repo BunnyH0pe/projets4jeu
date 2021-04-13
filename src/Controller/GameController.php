@@ -141,14 +141,7 @@ class GameController extends AbstractController
         Game $game, EntityManagerInterface $entityManager
     ): Response {
         $round = $game->getRounds()[0];
-        if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
-            return $this->json(true);
-        }
-
-        if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
-            return $this->json(true);
-        }
-
+        dump($round->getUser1BoardCards());
         if($round->getPioche()==[] && $round->getUser1HandCards()==[] && $round->getUser2HandCards()==[]){
             $board1 = $round->getUser1BoardCards();
             $board2 = $round->getUser1BoardCards();
@@ -160,6 +153,15 @@ class GameController extends AbstractController
             $round->setUser2BoardCards($board2);
             return $this->json('finderound');
         }
+
+        if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
+            return $this->json(true);
+        }
+
+        if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
+            return $this->json(true);
+        }
+
         return $this->json( false);
     }
 
