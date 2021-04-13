@@ -151,6 +151,7 @@ class GameController extends AbstractController
             $board2[] = $action2['SECRET'][0];
             $round->setUser1BoardCards($board1);
             $round->setUser2BoardCards($board2);
+            $entityManager->flush();
             return $this->json('finderound');
         }
 
