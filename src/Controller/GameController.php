@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Game;
-use App\Entity\Card;
 use App\Entity\Round;
 use App\Repository\CardRepository;
 use App\Repository\UserRepository;
