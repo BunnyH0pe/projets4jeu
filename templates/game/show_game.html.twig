@@ -46,7 +46,7 @@
           console.log('On arrete la boucle')
         }else if (data == 'finderound') {
           $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-          setInterval(function (){
+          setTimeout(function (){
             $.ajax({
               url: "{{ path('score_round', {game: game.id}) }}",
               method: 'POST',
