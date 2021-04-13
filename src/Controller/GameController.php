@@ -171,7 +171,7 @@ class GameController extends AbstractController
      * @Route("/score_round/{game}", name="score_round")
      */
     public function scoreRound(
-        Game $game, EntityManagerInterface $entityManager, Card $card, CardRepository $cardRepository
+        Game $game, EntityManagerInterface $entityManager, CardRepository $cardRepository
     ): Response {
         $round = $game->getRounds()[0];
         $cartesj1 = $round->getUser1BoardCards();
