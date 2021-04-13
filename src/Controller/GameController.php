@@ -298,7 +298,7 @@ class GameController extends AbstractController
         }else{
             return $this->json('newround');
         }
-
+        $entityManager->flush();
         }
 
 
