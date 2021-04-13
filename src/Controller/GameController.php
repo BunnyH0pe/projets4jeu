@@ -289,15 +289,17 @@ class GameController extends AbstractController
         if ($scorej1valeurs >= 4 || $scorej1points >= 11){
             $user = $game->getUser1();
             $game->setWinner($user);
+            $entityManager->flush();
             return $this->json('j1win');
         }elseif ($scorej2valeurs >= 4 || $scorej2points >= 11){
             $user = $game->getUser2();
             $game->setWinner($user);
+            $entityManager->flush();
             return $this->json('j2win');
         }else{
+            $entityManager->flush();
             return $this->json('newround');
         }
-        $entityManager->flush();
         }
 
 
@@ -341,8 +343,8 @@ class GameController extends AbstractController
         if (isset($carte)){
             $round->setPioche($pioche);
         }
-        return $this->json(true);
         $entityManager->flush();
+        return $this->json(true);
     }
 
     /**

@@ -212,9 +212,19 @@
           }
           break;
       }
+      $.ajax({
+        url: "{{ path('action_game', {game: game.id}) }}",
+        data: donneesAction,
+        method: 'POST',
+        success: function(data) {
+          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+          $('.action button').attr('disabled','disabled');
+        },
+        error: function(){
 
+        }
+      })
       console.log(event);
-
       $.ajax({
         url: "{{ path('change_tour', {game: game.id}) }}",
         data: 'event=' + event ,
@@ -229,18 +239,7 @@
           console.log('Il y a un problème')
         }
       })
-      $.ajax({
-        url: "{{ path('action_game', {game: game.id}) }}",
-        data: donneesAction,
-        method: 'POST',
-        success: function(data) {
-          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
-          $('.action button').attr('disabled','disabled');
-        },
-        error: function(){
 
-        }
-      })
     }else{
       alert('Vous n\'avez pas sélectionné de carte !');
     }
