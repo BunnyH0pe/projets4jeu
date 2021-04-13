@@ -159,9 +159,8 @@ class GameController extends AbstractController
             $round->setUser1BoardCards($board1);
             $round->setUser2BoardCards($board2);
             return $this->json('finderound');
-        }else{
-            return $this->json( false);
         }
+        return $this->json( false);
     }
 
 
