@@ -1,0 +1,25 @@
+.cartesvalides{
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    justify-content: flex-start;
+}
+
+.rangecarte img{
+    width: 65px;
+}
+
+.rangecarte {
+    min-width: 65px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rangecarte img:not(:first-child) {
+    margin-top: -70px;
+}
+
+.cartesadversaire img{
+    transform: rotate(180deg);
+}

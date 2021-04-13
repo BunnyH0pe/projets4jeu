@@ -1,18 +1,29 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+  <link rel="stylesheet" href="{{ asset('css/plateau.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Nunito:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"></script>
+</head>
+<body>
+<main class="container">
+  <a href="{{ path('default') }}"> Retour à l'accueil</a>
 <div id="plateau">
-{{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
+  {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
 </div>
 
 <div id="message">...</div>
-{% endblock %}
-
-{% block title %}
-
-{% endblock %}
-
-{% block javascripts %}
+</main>
+</body>
 <script>
   let boucle
   $(document).ready(function(){
@@ -28,11 +39,31 @@
         if (data == false) {
           $('#message').html('Tour de votre adversaire')
           $('.action button').prop("disabled",true);
-        } else {
+        }else if(data == true) {
           $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
           $('#message').html('C\'est mon tour...')
           clearInterval(boucle)
           console.log('On arrete la boucle')
+        }else if (data == 'finderound') {
+          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+          setInterval(function (){
+            $.ajax({
+              url: "{{ path('score_round', {game: game.id}) }}",
+              method: 'POST',
+              success: function(data) {
+                if (data == 'j1win'){
+                  $('#ecranfinj1').show();
+                }else if (data == 'j2win'){
+                  $('#ecranfinj2').show();
+                }else if (data == 'newround'){
+                  $('#ecrannewround').show();
+                }
+              },
+              error: function(){
+
+              }
+            })
+          },5000)
         }
       },
       error: function(){
@@ -42,79 +73,79 @@
   }
   var echange = [];
   let action
-    $(document).on('click', '#secret', function(){
-      console.log('secret')
-      action = 'secret' //mémorise l'action en cours
-      $('.choixSecret').show()
-      $('#valider').show()
-    })
+  $(document).on('click', '#secret', function(){
+    console.log('secret')
+    action = 'secret' //mémorise l'action en cours
+    $('.choixSecret').show()
+    $('#valider').show()
+  })
 
-    $(document).on('click', '#depot', function(){
-      console.log('depot')
-      action = 'depot' //mémorise l'action en cours
-      $('.choixDepot').show()
-      $('#valider').show()
-    })
+  $(document).on('click', '#depot', function(){
+    console.log('depot')
+    action = 'depot' //mémorise l'action en cours
+    $('.choixDepot').show()
+    $('#valider').show()
+  })
 
-    $(document).on('click', '#offre', function(){
-      console.log('offre')
-      action = 'offre' //mémorise l'action en cours
-      $('.choixOffre').show()
-      $('#valider').show()
-    })
+  $(document).on('click', '#offre', function(){
+    console.log('offre')
+    action = 'offre' //mémorise l'action en cours
+    $('.choixOffre').show()
+    $('#valider').show()
+  })
 
-    $(document).on('click', '#echange', function(){
-      console.log('echange')
-      $('.choixEchange').show()
-      $('.echangePop').show()
-    })
+  $(document).on('click', '#echange', function(){
+    console.log('echange')
+    $('.choixEchange').show()
+    $('.echangePop').show()
+  })
 
   {# Validation première sélection échange #}
-    $(document).on('click', '#selectpremierdouble', function(){
-      $('#selectpremierdouble').hide();
-      $.each($("input[name='carte_echange']:checked"), function(){
-        echange.push($(this).val());
-        $('.'+$(this).val()).hide();
-        $(this).prop("checked", false);
-      });
-      console.log(echange)
-      $('#validerdouble').show();
-    })
+  $(document).on('click', '#selectpremierdouble', function(){
+    $('#selectpremierdouble').hide();
+    $.each($("input[name='carte_echange']:checked"), function(){
+      echange.push($(this).val());
+      $('.'+$(this).val()).hide();
+      $(this).prop("checked", false);
+    });
+    console.log(echange)
+    $('#validerdouble').show();
+  })
 
-    $(document).on('click', '#validerdouble', function(){
-      $.each($("input[name='carte_echange']:checked"), function(){
-        echange.push($(this).val());
-        $('.'+$(this).val()).hide();
-        $(this).prop("checked", false);
-      });
-      console.log(echange)
-      $('.choixEchange').hide()
-      $('.echangePop').hide();
-      $('#valider').show();
+  $(document).on('click', '#validerdouble', function(){
+    $.each($("input[name='carte_echange']:checked"), function(){
+      echange.push($(this).val());
+      $('.'+$(this).val()).hide();
+      $(this).prop("checked", false);
+    });
+    console.log(echange)
+    $('.choixEchange').hide()
+    $('.echangePop').hide();
+    $('#valider').show();
 
-      action = 'echange'
-    })
+    action = 'echange'
+  })
 
 
-    {# Validation de l'offre #}
-    $(document).on('click', '#validoffre', function(){
-      donneesAction = {
-        action: 'offrevalid',
-        carte: $('input[name="cartechoisieoffre"]:checked').val()
+  {# Validation de l'offre #}
+  $(document).on('click', '#validoffre', function(){
+    donneesAction = {
+      action: 'offrevalid',
+      carte: $('input[name="cartechoisieoffre"]:checked').val()
+    }
+
+    $.ajax({
+      url: "{{ path('action_game', {game: game.id}) }}",
+      data: donneesAction,
+      method: 'POST',
+      success: function(data) {
+        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+      },
+      error: function(){
+
       }
-      
-      $.ajax({
-        url: "{{ path('action_game', {game: game.id}) }}",
-        data: donneesAction,
-        method: 'POST',
-        success: function(data) {
-          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
-        },
-        error: function(){
-
-        }
-      })
     })
+  })
 
   $(document).on('click', '#validechange', function(){
     donneesAction = {
@@ -135,84 +166,85 @@
     })
   })
 
-    $(document).on('click', '#valider', function(){
-      if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3) || ($("input.choixEchange[type=checkbox]:checked").length == 0) ) {
-        var event = 'clicked';
-        switch (action) {
-          case 'secret':
-              donneesAction = {
-                action: 'secret',
-                carte: $('input[name="carte_secret"]:checked').val()
-              }
-            break;
-          case 'depot':
-            var depot = [];
-              $.each($("input[name='carte_depot']:checked"), function(){
-                depot.push($(this).val());
-              });
-              console.log(depot[0])
-            donneesAction = {
-              action: 'depot',
-              carte1: depot[0],
-              carte2 : depot[1]
-            }
-            break;
-          case 'offre':
-            var offre = [];
-            $.each($("input[name='carte_offre']:checked"), function(){
-              offre.push($(this).val());
-            });
-            console.log(offre[0])
-            donneesAction = {
-              action: 'offre',
-              carte1: offre[0],
-              carte2 : offre[1],
-              carte3 : offre[2],
-            }
-            break;
-          case 'echange':
-            console.log('échange')
-            donneesAction = {
-              action: 'echange',
-              carte1: echange[0],
-              carte2 : echange[1],
-              carte3 : echange[2],
-              carte4 : echange[3],
-            }
-            break;
-        }
-
-        console.log(event);
-
-        $.ajax({
-          url: "{{ path('change_tour', {game: game.id}) }}",
-          data: 'event=' + event ,
-          method: 'POST',
-          success: function(data) {
-            if (data == true){
-              boucle = setInterval(refreshGame, 3000);
-              console.log('On remet la boucle');
-            }
-          },
-          error: function(){
-            console.log('Il y a un problème')
+  $(document).on('click', '#valider', function(){
+    if ( ($("input[type=radio]:checked").length > 0) || ($("input.choixDepot[type=checkbox]:checked").length == 2) || ($("input.choixOffre[type=checkbox]:checked").length == 3) || ($("input.choixEchange[type=checkbox]:checked").length == 0) ) {
+      var event = 'clicked';
+      switch (action) {
+        case 'secret':
+          donneesAction = {
+            action: 'secret',
+            carte: $('input[name="carte_secret"]:checked').val()
           }
-        })
-      $.ajax({
-          url: "{{ path('action_game', {game: game.id}) }}",
-          data: donneesAction,
-          method: 'POST',
-          success: function(data) {
-              $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
-              $('.action button').attr('disabled','disabled');
-          },
-          error: function(){
-
+          break;
+        case 'depot':
+          var depot = [];
+          $.each($("input[name='carte_depot']:checked"), function(){
+            depot.push($(this).val());
+          });
+          console.log(depot[0])
+          donneesAction = {
+            action: 'depot',
+            carte1: depot[0],
+            carte2 : depot[1]
           }
-      })
-      }else{
-        alert('Vous n\'avez pas sélectionné de carte !');
+          break;
+        case 'offre':
+          var offre = [];
+          $.each($("input[name='carte_offre']:checked"), function(){
+            offre.push($(this).val());
+          });
+          console.log(offre[0])
+          donneesAction = {
+            action: 'offre',
+            carte1: offre[0],
+            carte2 : offre[1],
+            carte3 : offre[2],
+          }
+          break;
+        case 'echange':
+          console.log('échange')
+          donneesAction = {
+            action: 'echange',
+            carte1: echange[0],
+            carte2 : echange[1],
+            carte3 : echange[2],
+            carte4 : echange[3],
+          }
+          break;
       }
-    })
+
+      console.log(event);
+
+      $.ajax({
+        url: "{{ path('change_tour', {game: game.id}) }}",
+        data: 'event=' + event ,
+        method: 'POST',
+        success: function(data) {
+          if (data == true){
+            boucle = setInterval(refreshGame, 3000);
+            console.log('On remet la boucle');
+          }
+        },
+        error: function(){
+          console.log('Il y a un problème')
+        }
+      })
+      $.ajax({
+        url: "{{ path('action_game', {game: game.id}) }}",
+        data: donneesAction,
+        method: 'POST',
+        success: function(data) {
+          $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}");
+          $('.action button').attr('disabled','disabled');
+        },
+        error: function(){
+
+        }
+      })
+    }else{
+      alert('Vous n\'avez pas sélectionné de carte !');
+    }
+  })
 </script>
-{% endblock %}
+</html>
+

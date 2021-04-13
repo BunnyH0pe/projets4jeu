@@ -36,7 +36,73 @@
 <div class="row">
     Plateau adversaire
 </div>
-
+<div class="row">
+    <div class="col-8 cartesvalides">
+        <div class="cartebienveillance rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Bienveillance' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartejustice rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Justice' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartesincerite rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Sincérité' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="carteloyaute rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Loyauté' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="carterespect rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Respect' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartecourage rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Courage' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartehonneur rangecarte cartesadversaire">
+            {% for groups in adversaire.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Honneur' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 <div class="row">
     {% for i in 1..7 %}
         <div class="col-1">
@@ -45,6 +111,74 @@
                 </span>
         </div>
     {% endfor %}
+</div>
+
+<div class="row">
+    <div class="col-8 cartesvalides">
+        <div class="cartebienveillance rangecarte">
+        {% for groups in moi.board %}
+            {% for card in groups %}
+                {% if cards[card].name =='Bienveillance' %}
+                    <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </div>
+        <div class="cartejustice rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Justice' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartesincerite rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Sincérité' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="carteloyaute rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Loyauté' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="carterespect rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Respect' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartecourage rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Courage' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="cartehonneur rangecarte">
+            {% for groups in moi.board %}
+                {% for card in groups %}
+                    {% if cards[card].name =='Honneur' %}
+                        <img class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -95,16 +229,6 @@
             <button>Echange off</button>
         {% endif %}
         <button id="valider" style="display: none" >Valider action</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-8">
-        {% for groups in moi.board %}
-            {% for card in groups %}
-                <img style="width: 100px;margin:3px; padding:5px;" class="{{ cards[card].id }}" src="{{ asset('img_carte_jeu/'~cards[card].picture) }}">
-            {% endfor %}
-        {% endfor %}
     </div>
 </div>
 
@@ -176,3 +300,23 @@
         {% endif %}
     {% endif %}
 {% endif %}
+
+<div id="ecranfinj1" style="display: none">
+    {% if app.user.id == game.user1.id %}
+        <p>Vous avez gagné la partie</p>
+    {% elseif app.user.id != game.user.id %}
+        <p>Vous avez perdu la partie</p>
+    {% endif %}
+</div>
+
+<div id="ecranfinj2" style="display: none">
+    {% if app.user.id == game.user1.id %}
+        <p>Vous avez perdu la partie</p>
+    {% elseif app.user.id != game.user.id %}
+        <p>Vous avez gagné la partie</p>
+    {% endif %}
+</div>
+
+<div id="ecrannewround" style="display: none">
+    <a href="#">Round suivant !</a>
+</div>

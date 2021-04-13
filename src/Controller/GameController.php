@@ -132,12 +132,15 @@ class GameController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/get-tout-game/{game}", name="get_tour")
      */
     public function getTour(
-        Game $game
+        Game $game, EntityManagerInterface $entityManager
     ): Response {
+        $round = $game->getRounds()[0];
         if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
             return $this->json(true);
         }
@@ -146,8 +149,161 @@ class GameController extends AbstractController
             return $this->json(true);
         }
 
-        return $this->json( false);
+        if($round->getPioche()==[] && $round->getUser1HandCards()==[] && $round->getUser2HandCards()==[]){
+            $board1 = $round->getUser1BoardCards();
+            $board2 = $round->getUser1BoardCards();
+            $action1 = $round->getUser1Action();
+            $action2 = $round->getUser2Action();
+            $board1[] = $action1['SECRET'][0];
+            $board2[] = $action2['SECRET'][0];
+            $round->setUser1BoardCards($board1);
+            $round->setUser2BoardCards($board2);
+            return $this->json('finderound');
+        }else{
+            return $this->json( false);
+        }
     }
+
+
+    /**
+     * @Route("/score_round/{game}", name="score_round")
+     */
+    public function scoreRound(
+        Game $game, EntityManagerInterface $entityManager, Card $card, CardRepository $cardRepository
+    ): Response {
+        $round = $game->getRounds()[0];
+        $cartesj1 = $round->getUser1BoardCards();
+        $cartesj2 = $round->getUser2BoardCards();
+        $scorej1points = 0;
+        $scorej2points = 0;
+        $scorej1valeurs = 0;
+        $scorej2valeurs = 0;
+        $nbj1Bienveillance = 0;
+        $nbj1Justice = 0;
+        $nbj1Sincerite = 0;
+        $nbj1Loyaute = 0;
+        $nbj1Respect = 0;
+        $nbj1Courage = 0;
+        $nbj1Honneur = 0;
+        $nbj2Bienveillance = 0;
+        $nbj2Justice = 0;
+        $nbj2Sincerite = 0;
+        $nbj2Loyaute = 0;
+        $nbj2Respect = 0;
+        $nbj2Courage = 0;
+        $nbj2Honneur = 0;
+        foreach ($cartesj1 as $carte){
+            $id = $carte;
+            $card = $cardRepository->find($id);
+            if ($card->getName()=='Bienveillance'){
+                $nbj1Bienveillance ++;
+            }elseif ($card->getName()=='Justice'){
+                $nbj1Justice ++;
+            }elseif ($card->getName()=='Sincérité'){
+                $nbj1Sincerite ++;
+            }elseif ($card->getName()=='Loyauté'){
+                $nbj1Loyaute ++;
+            }elseif ($card->getName()=='Respect'){
+                $nbj1Respect ++;
+            }elseif ($card->getName()=='Courage'){
+                $nbj1Courage ++;
+            }elseif ($card->getName()=='Honneur'){
+                $nbj1Honneur ++;
+            }
+        }
+        foreach ($cartesj2 as $carte){
+            $id = $carte;
+            $card = $cardRepository->find($id);
+            if ($card->getName()=='Bienveillance'){
+                $nbj2Bienveillance ++;
+            }elseif ($card->getName()=='Justice'){
+                $nbj2Justice ++;
+            }elseif ($card->getName()=='Sincérité'){
+                $nbj2Sincerite ++;
+            }elseif ($card->getName()=='Loyauté'){
+                $nbj2Loyaute ++;
+            }elseif ($card->getName()=='Respect'){
+                $nbj2Respect ++;
+            }elseif ($card->getName()=='Courage'){
+                $nbj2Courage ++;
+            }elseif ($card->getName()=='Honneur'){
+                $nbj2Honneur ++;
+            }
+        }
+
+        if ($nbj1Bienveillance > $nbj2Bienveillance){
+            $scorej1points += 2;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Bienveillance > $nbj1Bienveillance){
+            $scorej2points += 2;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Justice > $nbj2Justice){
+            $scorej1points += 2;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Justice > $nbj2Justice){
+            $scorej2points += 2;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Sincerite > $nbj2Sincerite){
+            $scorej1points += 2;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Sincerite > $nbj2Sincerite){
+            $scorej2points += 2;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Loyaute > $nbj2Loyaute){
+            $scorej1points += 3;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Loyaute > $nbj2Loyaute){
+            $scorej2points += 3;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Respect > $nbj2Respect){
+            $scorej1points += 3;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Respect > $nbj2Respect){
+            $scorej2points += 3;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Courage > $nbj2Courage){
+            $scorej1points += 4;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Courage > $nbj2Courage){
+            $scorej2points += 4;
+            $scorej2valeurs ++;
+        }
+
+        if ($nbj1Honneur > $nbj2Honneur){
+            $scorej1points += 5;
+            $scorej1valeurs ++;
+        }elseif ($nbj2Courage > $nbj2Courage){
+            $scorej2points += 5;
+            $scorej2valeurs ++;
+        }
+
+        if ($scorej1valeurs >= 4 || $scorej1points >= 11){
+            $user = $game->getUser1();
+            $game->setWinner($user);
+            return $this->json('j1win');
+        }elseif ($scorej2valeurs >= 4 || $scorej2points >= 11){
+            $user = $game->getUser2();
+            $game->setWinner($user);
+            return $this->json('j2win');
+        }else{
+            return $this->json('newround');
+        }
+
+        }
+
+
+
+
     /**
      * @Route("/change-tour-game/{game}", name="change_tour")
      */
@@ -186,8 +342,8 @@ class GameController extends AbstractController
         if (isset($carte)){
             $round->setPioche($pioche);
         }
-        $entityManager->flush();
         return $this->json(true);
+        $entityManager->flush();
     }
 
     /**
@@ -206,8 +362,6 @@ class GameController extends AbstractController
             $moi['handCards'] = $game->getRounds()[0]->getUser1HandCards();
             $moi['actions'] = $game->getRounds()[0]->getUser1Action();
             $moi['board'] = $game->getRounds()[0]->getUser1BoardCards();
-            dump($moi['actions']);
-            dump($moi['board']);
             $adversaire['handCards'] = $game->getRounds()[0]->getUser2HandCards();
             $adversaire['actions'] = $game->getRounds()[0]->getUser2Action();
             $adversaire['board'] = $game->getRounds()[0]->getUser2BoardCards();
@@ -369,8 +523,9 @@ class GameController extends AbstractController
                     $actions['OFFRE']['cartesAdversaire'] = [$carte];
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
                     unset($actions['OFFRE']['cartesInitiales'][$indexCarte]);
-                    $boardUser1[] = $actions['OFFRE']['cartesAdversaire'];
-                    $boardUser2[] = $actions['OFFRE']['cartesInitiales'];
+                    $boardUser1[] = array_pop($actions['OFFRE']['cartesAdversaire']);
+                    $boardUser2[] = array_pop($actions['OFFRE']['cartesInitiales']);
+                    $boardUser2[] = array_pop($actions['OFFRE']['cartesInitiales']);
                     $round->setUser1BoardCards($boardUser1);
                     $round->setUser2BoardCards($boardUser2);
                     $round->setUser2Action($actions); //je mets à jour le tableau
@@ -382,8 +537,9 @@ class GameController extends AbstractController
                     dump($actions['OFFRE']['cartesInitiales']);
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
                     unset($actions['OFFRE']['cartesInitiales'][$indexCarte]); //je supprime les cartes de ma main
-                    $boardUser2[] = $actions['OFFRE']['cartesAdversaire'];
-                    $boardUser1[] = $actions['OFFRE']['cartesInitiales'];
+                    $boardUser2[] = array_pop($actions['OFFRE']['cartesAdversaire']);
+                    $boardUser1[] = array_pop($actions['OFFRE']['cartesInitiales']);
+                    $boardUser1[] = array_pop($actions['OFFRE']['cartesInitiales']);
                     $round->setUser1Action($actions); //je mets à jour le tableau
                     $round->setUser1BoardCards($boardUser1);
                     $round->setUser2BoardCards($boardUser2);
@@ -406,8 +562,10 @@ class GameController extends AbstractController
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
-                    $boardUser1[] = $actions['ECHANGE']['cartesAdversaire'];
-                    $boardUser2[] = $actions['ECHANGE']['cartesInitiales'];
+                    $boardUser1[] = array_pop($actions['ECHANGE']['cartesAdversaire']);
+                    $boardUser1[] = array_pop($actions['ECHANGE']['cartesAdversaire']);
+                    $boardUser2[] = array_pop($actions['ECHANGE']['cartesInitiales']);
+                    $boardUser2[] = array_pop($actions['ECHANGE']['cartesInitiales']);
                     $round->setUser1BoardCards($boardUser1);
                     $round->setUser2BoardCards($boardUser2);
                     $round->setUser2Action($actions); //je mets à jour le tableau
@@ -429,8 +587,10 @@ class GameController extends AbstractController
                         dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
-                    $boardUser2[] = $actions['ECHANGE']['cartesAdversaire'];
-                    $boardUser1[] = $actions['ECHANGE']['cartesInitiales'];
+                    $boardUser2[] = array_pop($actions['ECHANGE']['cartesAdversaire']);
+                    $boardUser2[] = array_pop($actions['ECHANGE']['cartesAdversaire']);
+                    $boardUser1[] = array_pop($actions['ECHANGE']['cartesInitiales']);
+                    $boardUser1[] = array_pop($actions['ECHANGE']['cartesInitiales']);
                     $round->setUser1BoardCards($boardUser1);
                     $round->setUser2BoardCards($boardUser2);
                     $round->setUser1Action($actions); //je mets à jour le tableau
