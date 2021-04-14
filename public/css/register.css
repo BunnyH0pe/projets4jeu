@@ -1,0 +1,147 @@
+/*                                  INIT                                   */
+/*                                 Variables                               */
+/*                                                                         */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+form .button button, form label, h1 {
+  font-family: "Merienda", cursive;
+  font-weight: lighter;
+}
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #1A1F2C !important;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin: 0 50px;
+  width: 70%;
+}
+form div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+form label {
+  color: white;
+}
+form input, form select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  height: 35px;
+  margin: 10px 0 25px 0;
+  border-radius: 0.25rem;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+form select {
+  width: max-content;
+}
+form #registration_form_gender {
+  margin: 25px 0;
+}
+form #registration_form_birthday {
+  margin: 25px 0;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+form #registration_form_birthday select {
+  margin: 5px 0;
+}
+form #registration_form_avatar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 50%;
+}
+form #registration_form_avatar label {
+  margin-right: 25px;
+}
+form #registration_form_avatar input {
+  margin: 25px 10px 25px 0;
+}
+form #registration_form_agreeTerms {
+  width: 25px;
+  margin: 25px 0;
+}
+form input[type=radio] {
+  width: 25px;
+}
+form .button {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+form .button button {
+  position: relative;
+  cursor: pointer;
+  bottom: 0%;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 140px;
+  border-radius: 0;
+  color: white;
+  font-size: 1.1em;
+  white-space: nowrap;
+  transition: 0.3s;
+  background-color: #BC383D;
+  z-index: 1;
+}
+form .button .button_border {
+  border: 1px solid white;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  height: 50px;
+  width: 140px;
+  z-index: 0;
+  transition: 0.3s;
+}
+form .button:hover button {
+  background: #ffffff;
+  color: black;
+}
+form .button:hover .button_border {
+  left: -5%;
+  border: 1px solid white;
+}
+
+/*# sourceMappingURL=register.css.map */

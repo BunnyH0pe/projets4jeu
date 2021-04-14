@@ -9,26 +9,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Nunito:wght@200;300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
           crossorigin="anonymous"></script>
 </head>
 <body>
-<main class="container">
-  <a href="{{ path('default') }}"> Retour à l'accueil</a>
+<div class="fullscreenmode">
+  <a class="btn-retour" href="{{ path('default') }}"> Retour à l'accueil</a>
 <div id="plateau">
   {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
 </div>
 
 <div id="message">...</div>
-</main>
+</div>
 </body>
 <script>
   let boucle
   $(document).ready(function(){
     boucle = setInterval(refreshGame, 3000);
-    console.log('On démarre la boucle')
+    console.log('On démarre la boucle');
+    $(document).on('click', '.carteselectoffre', function(){
+      if ($(this).closest('.carteselectoffre').find('input[type=radio]').prop('checked')){
+        $(this).closest('.carteselectoffre').find('input[type=radio]').prop('checked',false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).closest('.carteselectoffre').find('input[type=radio]').prop('checked',true);
+        $(this).css('transform', 'scale(1.2)');
+      }
+    })
   })
 
   function refreshGame() {
@@ -38,7 +47,7 @@
         console.log(data)
         if (data == false) {
           $('#message').html('Tour de votre adversaire')
-          $('.action button').prop("disabled",true);
+          $('.actionperso').css('pointer-events','none');
         }else if(data == true) {
           $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
           $('#message').html('C\'est mon tour...')
@@ -81,29 +90,69 @@
   var echange = [];
   let action
   $(document).on('click', '#secret', function(){
-    console.log('secret')
-    action = 'secret' //mémorise l'action en cours
-    $('.choixSecret').show()
+    action = 'secret'
+    $('.macarte').css('cursor','pointer');
+    $(document).on('click', '.macarte', function(){
+      if ($(this).closest('.cartespan').find('.invisibleinput').find('.choixSecret').prop('checked')){
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixSecret').prop('checked',false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixSecret').prop('checked',true);
+        $(this).css('transform', 'scale(1.2)');
+      }
+    })
     $('#valider').show()
   })
 
   $(document).on('click', '#depot', function(){
     console.log('depot')
     action = 'depot' //mémorise l'action en cours
-    $('.choixDepot').show()
+    $('.macarte').css('cursor','pointer');
+    $(document).on('click', '.macarte', function(){
+      console.log($(this));
+      if ($(this).closest('.cartespan').find('.invisibleinput').find('.choixDepot').is(':checked')){
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixDepot').prop('checked', false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixDepot').prop('checked', true);
+        $(this).css('transform', 'scale(1.2)');
+        $(this).closest('.cartespan').find('.invisbleinput .choixDepot').hide();
+      }
+    })
     $('#valider').show()
   })
 
   $(document).on('click', '#offre', function(){
     console.log('offre')
+    $('.macarte').css('cursor','pointer');
+    $(document).on('click', '.macarte', function(){
+      if ($(this).closest('.cartespan').find('.invisibleinput').find('.choixOffre').prop('checked')){
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixOffre').prop('checked',false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixOffre').prop('checked',true);
+        $(this).css('transform', 'scale(1.2)');
+      }
+    })
     action = 'offre' //mémorise l'action en cours
-    $('.choixOffre').show()
     $('#valider').show()
   })
 
   $(document).on('click', '#echange', function(){
     console.log('echange')
-    $('.choixEchange').show()
+    $(document).on('click', '.macarte', function(){
+      if ($(this).closest('.cartespan').find('.invisibleinput').find('.choixEchange').prop('checked')){
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixEchange').prop('checked',false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).closest('.cartespan').find('.invisibleinput').find('.choixEchange').prop('checked',true);
+        $(this).css('transform', 'scale(1.2)');
+      }
+    })
     $('.echangePop').show()
   })
 

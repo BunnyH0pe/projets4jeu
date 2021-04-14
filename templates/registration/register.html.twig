@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}"> <!--LINK TO THE CSS-->
+{% endblock %}
 {% block body %}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -9,18 +11,44 @@
 
     <h1>S'inscrire</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.gender) }}
-        {{ form_row(registrationForm.birthday) }}
-        {{ form_row(registrationForm.avatar) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email,{
+            label: 'E-mail',
+            'attr': {'id' : 'registration_form_email'}
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe',
+            'attr':{'id' : 'registration_form_plainPassword'}
+        }) }}
+        {{ form_row(registrationForm.firstname, {
+            label: 'Prénom',
+            'attr':{'id' : 'registration_form_firstname'}
+        }) }}
+        {{ form_row(registrationForm.lastname, {
+            label: 'Nom',
+            'attr':{'id' : 'registration_form_lastname'}
+        }) }}
+        {{ form_row(registrationForm.gender, {
+            label: 'Genre',
+            'attr':{'id' : 'registration_form_gender'}
+        }) }}
+        {{ form_row(registrationForm.birthday, {
+            label: 'Date de naissance',
+            'attr':{'id' : 'registration_form_birthday_day'}
+        }) }}
+        {{ form_row(registrationForm.avatar, {
+            label: 'Avatar'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'Accepter les termes'
+        }) }}
+
+    <div class="button">
+        <button class="btn btn-lg btn-primary" type="submit">
+            Register
+        </button>
+        <div class="button_border"></div>
+    </div>
     {{ form_end(registrationForm) }}
 {% endblock %}

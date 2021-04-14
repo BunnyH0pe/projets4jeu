@@ -1,0 +1,147 @@
+@import 'initialisation.scss';
+
+body {
+    background-color: $black!important;
+}
+
+.container {
+    @include flex($align: center, $justify: center, $direction: column);
+}
+
+h1 {
+    text-align: center;
+    @extend %font_title;
+    color: white;
+}
+
+form {
+  @include flex($align: flex-start, $justify: center, $direction: column);
+
+  position: relative;
+
+    margin: 0 50px;
+    width: 50%;
+
+    div {
+      @include flex($align: flex-start, $justify: center, $direction: column);
+      position: relative;
+      width: 100%;
+    }
+
+    label {
+        @extend %font_title;
+        color: white;
+    }
+
+    input, select {
+    
+      width: 100%;
+      padding: .375rem .75rem;
+      height: 25px;
+      margin: 10px 0 25px 0;
+
+      border-radius: .25rem;
+      border: none;
+    }
+    select {
+      width: max-content;
+    }
+
+    #registration_form_gender {
+      margin: 25px 0;
+    }
+
+    #registration_form_birthday {
+      margin: 25px 0;
+
+      select {
+        margin: 5px 0;
+      }
+    }
+
+    #registration_form_avatar {
+      @include flex($align: center, $justify: flex-start, $direction: row);
+      width: 50%;
+      
+      label {
+        margin-right: 25px;
+      }
+
+      input {
+        margin: 25px 10px 25px 0;
+      }
+    }
+    #registration_form_agreeTerms {
+      width: 25px;
+      margin: 25px 0;
+    }
+
+    input[type=radio] {
+      width: 25px;
+    }
+
+    .button {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+
+        button {
+          position: relative;
+    
+          cursor: pointer;
+    
+          bottom: 0%;
+    
+          outline: none;
+          border: none;
+    
+          height: 50px;
+          width: 140px;
+    
+            border-radius: 0;
+
+          color: white;
+          font-size: 1.1em;
+          white-space: nowrap;
+    
+          transition: 0.3s;
+    
+          @extend %font_title;
+    
+          background-color: $red;
+    
+          z-index: 1;
+    
+        }
+    
+        .button_border {
+          border: 1px solid white;
+    
+          position: absolute;
+          top: 10%;
+          left: 5%;
+    
+          height: 50px;
+          width: 140px;
+    
+          z-index: 0;
+    
+          transition: 0.3s;
+        }
+    
+        &:hover {
+    
+          button {
+            background: $yellow;
+            color: black;
+          }
+
+          .button_border {
+            left: -5%;
+            border: 1px solid black;
+          }
+        }
+      }
+}
+

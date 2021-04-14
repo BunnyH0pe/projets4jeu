@@ -1,0 +1,87 @@
+/*                                  INIT                                   */
+/*                                 Variables                               */
+/*                                                                         */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: #1A1F2C;
+  font-family: "Nunito", sans-serif;
+}
+
+form .button button, form label, h1 {
+  font-family: "Merienda", cursive;
+  font-weight: lighter;
+}
+
+body {
+  background-color: #1A1F2C !important;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+form {
+  width: 50%;
+}
+form label {
+  color: white;
+}
+form input {
+  margin: 10px 0 25px 0;
+}
+form .button {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+form .button button {
+  position: relative;
+  cursor: pointer;
+  bottom: 0%;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 140px;
+  border-radius: 0;
+  color: white;
+  font-size: 1.1em;
+  white-space: nowrap;
+  transition: 0.3s;
+  background-color: #BC383D;
+  z-index: 1;
+}
+form .button .button_border {
+  border: 1px solid white;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  height: 50px;
+  width: 140px;
+  z-index: 0;
+  transition: 0.3s;
+}
+form .button:hover button {
+  background: #E4D1B5;
+  color: black;
+}
+form .button:hover .button_border {
+  left: -5%;
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=login.css.map */

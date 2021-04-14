@@ -1,25 +1,235 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.fullscreenmode{
+    background: radial-gradient(#353535, #1a1a1a);
+    width: 100vw ;
+    max-width: 100%;
+    height: 100vh;
+}
+
+.btn-retour{
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: "Nunito", sans-serif;
+    text-decoration: none;
+    background: white;
+    padding: 8px;
+}
+
+.mainadversaire{
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainadversaire img{
+    width: 90px;
+    margin-left: -25px;
+    transform: rotate(180deg);
+}
+
+.actionadversaire{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: 70px 70px;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.cartecentrale{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    margin-top: 5px;
+}
+
+.plateaucentral{
+    position: absolute; /* postulat de départ */
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}
+
+.cartecentrale img{
+    width: 80px;
+}
+
+.actionadversaire img{
+    width: 70px;
+}
+
+.actionj2nondisponible{
+    filter: invert(1);
+}
+
 .cartesvalides{
     display: flex;
     flex-direction: row;
-    gap: 35px;
-    justify-content: flex-start;
+    gap: 30px;
+    justify-content: center;
 }
 
 .rangecarte img{
-    width: 65px;
+    width: 80px;
 }
 
 .rangecarte {
-    min-width: 65px;
-    margin-left: 10px;
+    min-width: 80px;
     display: flex;
     flex-direction: column;
+    min-height: 220px;
 }
 
 .rangecarte img:not(:first-child) {
-    margin-top: -70px;
+    margin-top: -90px;
+}
+
+.cartesadversaire{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.cartesadversaire img:not(:first-child) {
+    margin-top: -90px;
 }
 
 .cartesadversaire img{
     transform: rotate(180deg);
+}
+
+.moimain{
+    display: flex;
+    position: absolute;
+    gap: 20px;
+    width: 100%;
+    bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.moimain img{
+    width: 100px;
+}
+
+.actionperso{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: grid;
+    grid-template-columns: 70px 70px;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.actionperso img{
+    width: 70px;
+    cursor: pointer;
+}
+
+.actionj1nondisponible{
+    filter: invert(1);
+    cursor: default !important;
+}
+
+#valider{
+    padding: 20px;
+    position: absolute;
+    bottom: 170px;
+    right: 10px;
+    width: 150px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px ;
+}
+
+.popup-offre{
+
+}
+
+.overlay{
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1200;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.popup-offre .contenu-pop-interne{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    font-family: "Merienda", cursive;
+    font-size: 18px;
+}
+
+.flexcarteselect{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.flexcarteselect img{
+    cursor: pointer;
+    width: 100px;
+}
+
+#validoffre{
+    cursor: pointer;
+    border: black 1px solid;
+    color:black;
+    background-color: white;
+    font-family: "Nunito", sans-serif;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    font-size: 16px;
+}
+
+
+.popup-echange{
+
+}
+
+.echangePop{
+    background: white;
+    width: 600px;
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carteselectoffre input{
+    display: none;
+}
+
+#message{
+    position: absolute;
+    bottom: 50%;
+    right: 10px;
+    color: white;
+    font-family: "Nunito", sans-serif;
+}
+
+.invisibleinput{
+    display: none;
 }
