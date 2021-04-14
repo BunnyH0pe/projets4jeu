@@ -151,7 +151,7 @@ class GameController extends AbstractController
             $action2 = $round->getUser2Action();
             dump($action1);
             dump($action2);
-            if (count($board1) == 7){
+            if (count($board1) < 8){
                 $board1[] = $action1['SECRET'][0];
                 $board2[] = $action2['SECRET'][0];
             }
