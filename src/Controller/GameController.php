@@ -298,10 +298,25 @@ class GameController extends AbstractController
             $scorej2valeurs ++;
         }
 
-        $tableauscore['user1']['scorepoints'] = $scorej1points ;
-        $tableauscore['user1']['scorevaleurs'] = $scorej1valeurs ;
-        $tableauscore['user2']['scorepoints'] = $scorej2points ;
-        $tableauscore['user2']['scorevaleurs'] = $scorej2valeurs ;
+        dump($nbj1Bienveillance);
+        dump($nbj1Justice );
+        dump($nbj1Sincerite );
+        dump($nbj1Loyaute );
+        dump($nbj1Respect );
+        dump($nbj1Courage );
+        dump($nbj1Honneur );
+        dump($nbj2Bienveillance );
+        dump($nbj2Justice );
+        dump($nbj2Sincerite );
+        dump($nbj2Loyaute );
+        dump($nbj2Respect );
+        dump($nbj2Courage );
+        dump($nbj2Honneur);
+
+        $tableauscore['user1']['scorepoints'] = $scorej1points;
+        $tableauscore['user1']['scorevaleurs'] = $scorej1valeurs;
+        $tableauscore['user2']['scorepoints'] = $scorej2points;
+        $tableauscore['user2']['scorevaleurs'] = $scorej2valeurs;
         dump($tableauscore);
         $round->setScore($tableauscore);
         $entityManager->flush();
