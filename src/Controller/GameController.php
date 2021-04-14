@@ -146,7 +146,7 @@ class GameController extends AbstractController
         dump($round->getUser1BoardCards());
         if($round->getPioche()==[] && $round->getUser1HandCards()==[] && $round->getUser2HandCards()==[]){
             $board1 = $round->getUser1BoardCards();
-            $board2 = $round->getUser1BoardCards();
+            $board2 = $round->getUser2BoardCards();
             $action1 = $round->getUser1Action();
             $action2 = $round->getUser2Action();
             dump($action1);
