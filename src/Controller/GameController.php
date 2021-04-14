@@ -202,6 +202,7 @@ class GameController extends AbstractController
         $nbj2Respect = 0;
         $nbj2Courage = 0;
         $nbj2Honneur = 0;
+
         foreach ($cartesj1 as $carte){
             $id = $carte;
             $card = $cardRepository->find($id);
@@ -252,7 +253,7 @@ class GameController extends AbstractController
         if ($nbj1Justice > $nbj2Justice){
             $scorej1points += 2;
             $scorej1valeurs ++;
-        }elseif ($nbj2Justice > $nbj2Justice){
+        }elseif ($nbj2Justice > $nbj1Justice){
             $scorej2points += 2;
             $scorej2valeurs ++;
         }
@@ -260,7 +261,7 @@ class GameController extends AbstractController
         if ($nbj1Sincerite > $nbj2Sincerite){
             $scorej1points += 2;
             $scorej1valeurs ++;
-        }elseif ($nbj2Sincerite > $nbj2Sincerite){
+        }elseif ($nbj2Sincerite > $nbj1Sincerite){
             $scorej2points += 2;
             $scorej2valeurs ++;
         }
@@ -268,7 +269,7 @@ class GameController extends AbstractController
         if ($nbj1Loyaute > $nbj2Loyaute){
             $scorej1points += 3;
             $scorej1valeurs ++;
-        }elseif ($nbj2Loyaute > $nbj2Loyaute){
+        }elseif ($nbj2Loyaute > $nbj1Loyaute){
             $scorej2points += 3;
             $scorej2valeurs ++;
         }
@@ -276,7 +277,7 @@ class GameController extends AbstractController
         if ($nbj1Respect > $nbj2Respect){
             $scorej1points += 3;
             $scorej1valeurs ++;
-        }elseif ($nbj2Respect > $nbj2Respect){
+        }elseif ($nbj2Respect > $nbj1Respect){
             $scorej2points += 3;
             $scorej2valeurs ++;
         }
@@ -284,7 +285,7 @@ class GameController extends AbstractController
         if ($nbj1Courage > $nbj2Courage){
             $scorej1points += 4;
             $scorej1valeurs ++;
-        }elseif ($nbj2Courage > $nbj2Courage){
+        }elseif ($nbj2Courage > $nbj1Courage){
             $scorej2points += 4;
             $scorej2valeurs ++;
         }
@@ -292,7 +293,7 @@ class GameController extends AbstractController
         if ($nbj1Honneur > $nbj2Honneur){
             $scorej1points += 5;
             $scorej1valeurs ++;
-        }elseif ($nbj2Courage > $nbj2Courage){
+        }elseif ($nbj2Courage > $nbj1Courage){
             $scorej2points += 5;
             $scorej2valeurs ++;
         }
