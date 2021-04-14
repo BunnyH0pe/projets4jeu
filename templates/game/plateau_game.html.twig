@@ -276,19 +276,24 @@
 <div id="ecranfinj1" style="display: none">
     {% if app.user.id == game.user1.id %}
         <p>Vous avez gagné la partie</p>
+        <p class="scorej1"></p> - <p class="scorej2"></p>
     {% elseif app.user.id != game.user1.id %}
         <p>Vous avez perdu la partie</p>
+        <p class="scorej1"></p> - <p class="scorej2"></p>
     {% endif %}
 </div>
 
 <div id="ecranfinj2" style="display: none">
     {% if app.user.id == game.user1.id %}
         <p>Vous avez perdu la partie</p>
+        <p class="scorej1"></p> - <p class="scorej2"></p>
     {% elseif app.user.id != game.user1.id %}
         <p>Vous avez gagné la partie</p>
+        <p class="scorej1"></p> - <p class="scorej2"></p>
     {% endif %}
 </div>
 
 <div id="ecrannewround" style="display: none">
     <a href="#">Round suivant !</a>
+    <p class="scorej1"></p> - <p class="scorej2"></p>
 </div>

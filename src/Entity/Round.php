@@ -80,6 +80,12 @@ class Round
     /**
      * @ORM\Column(type="array")
      */
+    private $score = [];
+
+
+    /**
+     * @ORM\Column(type="array")
+     */
     private $pioche = [];
 
     public function getId(): ?int
@@ -239,6 +245,19 @@ class Round
     public function setPioche(array $pioche): self
     {
         $this->pioche = $pioche;
+
+        return $this;
+    }
+
+
+    public function getScore(): ?array
+    {
+        return $this->score;
+    }
+
+    public function setScore(array $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }

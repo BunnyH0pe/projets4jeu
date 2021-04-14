@@ -51,11 +51,17 @@
               url: "{{ path('score_round', {game: game.id}) }}",
               method: 'POST',
               success: function(data) {
-                if (data == 'j1win'){
+                if (data.reponse == 'j1win'){
+                  $('.scorej1').html(data.scorej1points);
+                  $('.scorej2').html(data.scorej2points);
                   $('#ecranfinj1').show();
-                }else if (data == 'j2win'){
+                }else if (data.reponse == 'j2win'){
+                  $('.scorej1').html(data.scorej1points);
+                  $('.scorej2').html(data.scorej2points);
                   $('#ecranfinj2').show();
-                }else if (data == 'newround'){
+                }else if (data.reponse == 'newround'){
+                  $('.scorej1').html(data.scorej1points);
+                  $('.scorej2').html(data.scorej2points);
                   $('#ecrannewround').show();
                 }
               },

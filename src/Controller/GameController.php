@@ -54,6 +54,8 @@ class GameController extends AbstractController
             $set->setGame($game);
             $set->setCreated(new \DateTime('now'));
             $set->setSetNumber(1);
+            $tableauscore = [];
+            $set->setScore($tableauscore);
 
             $cards = $cardRepository->findAll();
             $tCards = [];
@@ -147,8 +149,10 @@ class GameController extends AbstractController
             $board2 = $round->getUser1BoardCards();
             $action1 = $round->getUser1Action();
             $action2 = $round->getUser2Action();
-            $board1[] = $action1['SECRET'][0];
-            $board2[] = $action2['SECRET'][0];
+            if (count($board1) < 8){
+                $board1[] = $action1['SECRET'][0];
+                $board2[] = $action2['SECRET'][0];
+            }
             $round->setUser1BoardCards($board1);
             $round->setUser2BoardCards($board2);
             $entityManager->flush();
@@ -176,6 +180,7 @@ class GameController extends AbstractController
         $round = $game->getRounds()[0];
         $cartesj1 = $round->getUser1BoardCards();
         $cartesj2 = $round->getUser2BoardCards();
+        $tableauscore = $round->getScore();
         $scorej1points = 0;
         $scorej2points = 0;
         $scorej1valeurs = 0;
@@ -289,19 +294,27 @@ class GameController extends AbstractController
             $scorej2valeurs ++;
         }
 
+        $tableauscore['user1']['scorepoints'] = $scorej1points ;
+        $tableauscore['user1']['scorevaleurs'] = $scorej1valeurs ;
+        $tableauscore['user2']['scorepoints'] = $scorej2points ;
+        $tableauscore['user2']['scorevaleurs'] = $scorej2valeurs ;
+        dump($tableauscore);
+        $round->setScore($tableauscore);
+        $entityManager->flush();
+
         if ($scorej1valeurs >= 4 || $scorej1points >= 11){
             $user = $game->getUser1();
             $game->setWinner($user);
             $entityManager->flush();
-            return $this->json('j1win');
+            return $this->json(['reponse' => 'j1win', 'scorej1points' => $scorej1points, 'scorej1valeurs' => $scorej1valeurs, 'scorej2points' => $scorej2points, 'scorej2valeurs' => $scorej2valeurs ]);
         }elseif ($scorej2valeurs >= 4 || $scorej2points >= 11){
             $user = $game->getUser2();
             $game->setWinner($user);
             $entityManager->flush();
-            return $this->json('j2win');
+            return $this->json(['reponse' => 'j2win', 'scorej1points' => $scorej1points, 'scorej1valeurs' => $scorej1valeurs, 'scorej2points' => $scorej2points, 'scorej2valeurs' => $scorej2valeurs ]);
         }else{
             $entityManager->flush();
-            return $this->json('newround');
+            return $this->json(['reponse' => 'newround', 'scorej1points' => $scorej1points, 'scorej1valeurs' => $scorej1valeurs, 'scorej2points' => $scorej2points, 'scorej2valeurs' => $scorej2valeurs ]);
         }
         }
 
@@ -384,7 +397,7 @@ class GameController extends AbstractController
 
         return $this->render('game/plateau_game.html.twig', [
             'game' => $game,
-            'set' => $game->getRounds()[0],
+            'round' => $game->getRounds()[0],
             'cards' => $tCards,
             'moi' => $moi,
             'adversaire' => $adversaire
