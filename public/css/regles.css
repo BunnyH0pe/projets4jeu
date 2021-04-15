@@ -67,8 +67,8 @@ body {
 
 #b_game {
   position: relative;
-  width: 720px;
-  height: 480px;
+  width: 1080px;
+  height: 610px;
   max-height: 100vh;
   border: solid white 1px;
 }
@@ -76,8 +76,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 720px;
-  height: 480px;
+  width: 1080px;
+  height: 610px;
   max-height: 100vh;
   background: black;
   right: -0.5vw;
