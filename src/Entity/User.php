@@ -90,6 +90,27 @@ class User implements UserInterface
      */
     private $winners;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $endedgames;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $winnedgames;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $lostgames;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $winnedvalues;
+
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -261,6 +282,67 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLostgames()
+    {
+        return $this->lostgames;
+    }
+
+    public function setLostgames($lostgames): self
+    {
+        $this->lostgames = $lostgames;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndedgames()
+    {
+        return $this->endedgames;
+    }
+
+    public function setEndedgames($endedgames): self
+    {
+        $this->endedgames = $endedgames;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWinnedgames()
+    {
+        return $this->winnedgames;
+    }
+
+    public function setWinnedgames($winnedgames): self
+    {
+        $this->winnedgames = $winnedgames;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWinnedvalues()
+    {
+        return $this->winnedvalues;
+    }
+
+    public function setWinnedvalues($winnedvalues): self
+    {
+        $this->winnedvalues = $winnedvalues;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection|Game[]

@@ -10,6 +10,14 @@
     height: 100vh;
 }
 
+#message{
+    position: absolute;
+    bottom: 50%;
+    right: 10px;
+    color: white;
+    font-family: "Nunito", sans-serif;
+}
+
 .btn-retour{
     color: black;
     position: absolute;
@@ -191,6 +199,21 @@
     width: 100px;
 }
 
+.grp-1{
+    display: flex;
+    margin-right: 30px;
+}
+
+.grp-2{
+    display: flex;
+}
+
+.flex-echange-prop{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 #validoffre{
     cursor: pointer;
     border: black 1px solid;
@@ -217,20 +240,171 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 20px;
+    font-family: "Merienda", cursive;
+    font-size: 18px;
+}
+
+#selectpremierdouble{
+    cursor: pointer;
+    border: black 1px solid;
+    color:black;
+    background-color: white;
+    font-family: "Nunito", sans-serif;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    font-size: 18px;
+}
+
+#validerdouble{
+    cursor: pointer;
+    border: black 1px solid;
+    color:black;
+    background-color: white;
+    font-family: "Nunito", sans-serif;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    font-size: 18px;
+}
+
+.cartechoisiesechange{
+    height: 140px;
+    width: 100px;
+    background-color: red;
+    border: 1px solid black;
+}
+
+.cartevalidesechange{
+    height: 140px;
+    width: 100px;
+    background-color: green;
+    border: 1px solid black;
+}
+
+.echangePop h4{
+    margin-bottom: 20px;
+}
+
+.validerenvoiechange p{
+    text-align: center;
+    font-family: "Nunito", sans-serif;
+    margin-top: 10px;
+    color: red;
+}
+
+.deuxiemegroupe{
+    height: 140px;
+    width: 100px;
+    border: 1px solid black;
 }
 
 .carteselectoffre input{
     display: none;
 }
 
-#message{
-    position: absolute;
-    bottom: 50%;
-    right: 10px;
-    color: white;
-    font-family: "Nunito", sans-serif;
-}
-
 .invisibleinput{
     display: none;
+}
+
+.flex-echange-doubles{
+    display: flex;
+}
+
+.popup-echange .contenu-pop-interne{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+    font-family: "Merienda", cursive;
+    font-size: 18px;
+}
+.popup-echange .carte img{
+    width: 100px;
+}
+
+.popup-echange h4{
+    margin-bottom: 20px;
+}
+
+.groupe1{
+    margin-right: 40px;
+}
+
+.groups{
+    display: flex;
+    gap: 10px;
+}
+
+#validechange{
+    cursor: pointer;
+    border: black 1px solid;
+    color:black;
+    background-color: white;
+    font-family: "Nunito", sans-serif;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.jeuinterne{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+    font-family: "Merienda", cursive;
+    font-size: 18px;
+}
+.jeuinterne a{
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    border: black 2px solid;
+    margin-top: 20px;
+    display: block;
+    width: 50%;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+}
+
+.jeuinterne h4{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.flex-fin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 400px;
+}
+
+.flex-fin .colomn-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+}
+
+.flex-fin .colomn-flex-mid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
 }

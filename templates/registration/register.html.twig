@@ -41,14 +41,22 @@
         label: 'Date de naissance',
         'attr':{'id' : 'registration_form_birthday_day'}
     }) }}
-    {{ form_row(registrationForm.avatar, {
-        label: 'Avatar'
+
+    <label for="avatar">Avatar :</label>
+    <div class="flex-avatar">
+        <img src="{{ asset('avatar/avatar1.png') }}" alt="1">
+        <img src="{{ asset('avatar/avatar2.png') }}" alt="2">
+        <img src="{{ asset('avatar/avatar3.png') }}" alt="3">
+    </div>
+
+    {{ form_row(registrationForm.avatar) }}
+    {{ form_row(registrationForm.agreeTerms, {
+        label: 'Accepter les conditions'
     }) }}
-    {{ form_row(registrationForm.agreeTerms) }}
 
     <div class="button">
         <button class="btn btn-lg btn-primary" type="submit">
-            Register
+            S'inscrire
         </button>
         <div class="button_border"></div>
     </div>

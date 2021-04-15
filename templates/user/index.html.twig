@@ -11,7 +11,7 @@
         <h2>Ma carte de samouraï</h2>
         <div class="container_carte">
             <div class="img_profil">
-                <img src="{{ asset('avatar/'~user.avatar) }}" alt="Photo de profil">
+                <img id="imgonclick" src="{{ asset('avatar/'~user.avatar) }}" alt="Photo de profil">
                 <p>Changez votre image de <br>profil en cliquant dessus</p>
             </div>
             <div>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="informations">
                             <div>
-                                <p>Prénom: <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span><div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="Domnin"></div></p>
+                                <p>Prénom: <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span><div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="{{ user.firstName }}"></div></p>
 
                             </div>
                             <a><img id="firstname" src="{{ asset('images/settings.png') }}" alt="engrenages parametres"></a>
@@ -89,58 +89,105 @@
 
 
     <section id="MesRecompenses">
-        <h2>Mes récompenses</h2>
+        <h2>Mes statistiques</h2>
         <div class="container_recompenses">
                 <div>
                 <img src="{{ asset('images/pictogamewin.svg') }}" alt="Coupe victoire">
-                <h3>30</h3>
+                <h3>{{ user.winnedgames }}</h3>
                 <p>Parties gagnées</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/pictolose.svg') }}" alt="Main qui tient un drapeau">
-                    <h3>26</h3>
+                    <h3>{{ user.lostgames }}</h3>
                     <p>Parties perdues</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/pictotime.svg') }}" alt="Sablier">
-                    <h3>15h00</h3>
-                    <p>Temps de jeu</p>
+                    <h3>{{ user.endedgames }}</h3>
+                    <p>Parties terminées</p>
                 </div>
                 <div>
                     <img src="{{ asset('images/pictovaleurs.svg') }}" alt="Cartes du jeu">
-                    <h3>182</h3>
+                    <h3>{{ user.winnedvalues }}</h3>
                     <p>Valeurs obtenues</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="historique">
-        <p>Vos parties</p>
+    <section id="Historique">
+        <h2>Vos parties</h2>
         <br>
+        <div class="content-games">
         {% for games in playedgames %}
             {% for infogame in games|sort|reverse %}
                 <div>
-                    <p>Partie n°{{ infogame.id }}</p>
+                    <h3>Partie n°{{ infogame.id }}</h3>
                     {% if infogame.user1.id == user.id %}
-                        <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user2.firstName }} {{ infogame.user2.firstName }}</p>
+                        <p>{{ user.pseudo }} CONTRE {{ infogame.user2.pseudo }}</p>
                     {% else %}
-                        <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user1.firstName }} {{ infogame.user1.firstName }}</p>
+                        <p>{{ user.pseudo }} CONTRE {{ infogame.user1.pseudo }}</p>
                     {% endif %}
                     <span>{{ infogame.created|date("Y-m-d H:i:s") }}</span>
                     {% if infogame.winner != NULL %}
                         <span> - {{ infogame.ended|date("Y-m-d H:i:s") }}</span>
                         <p>Le joueur {{ infogame.winner.firstName }} a gagné !</p>
                     {% else %}
-                        <p>Partie non terminée !</p><a href="{{ path('show_game',{game: infogame.id})}}">Rejoindre dès maintenant !</a>
+                        <br>
+                        <p><a href="{{ path('show_game',{game: infogame.id})}}">Rejoindre dès maintenant !</a></p>
                     {% endif %}
                 </div>
                 <br>
             {% endfor %}
         {% endfor %}
+        </div>
     </section>
+    <div style="display: none;" class="popupavatar">
+        <div class="overlay">
+            <div class="content-pop-avatar">
+                <h4>Choisissez votre nouvel avatar :</h4>
+                <div class="flex-align-avatar">
+                    <div class="img-avatar">
+                        <img src="{{ asset('avatar/avatar1.png') }}" alt="avatar n°1">
+                        <img src="{{ asset('avatar/avatar2.png') }}" alt="avatar n°2">
+                        <img src="{{ asset('avatar/avatar3.png') }}" alt="avatar n°3">
+                    </div>
+                    <div class="input-avatar">
+                        <input type="radio" name="avatarname" value="avatar1.png">
+                        <input type="radio" name="avatarname" value="avatar2.png">
+                        <input type="radio" name="avatarname" value="avatar3.png">
+                    </div>
+                </div>
+                <button id="validavatar">
+                    Valider
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script>
+
+        $(document).on('click', '#imgonclick', function(){
+            $('.popupavatar').show();
+            $(document).on('click', '#validavatar', function(){
+                var donnesModif = { avatar:$('input[name="avatarname"]:checked').val() }
+                $.ajax({
+                    url: "{{ path('avatar_modif') }}",
+                    data: donnesModif,
+                    method: 'POST',
+                    success: function() {
+                        console.log('C\'est passé');
+                        location.reload();
+                    },
+                    error: function(){
+                        console.log('C\'est pas passé');
+                    }
+                })
+
+            })
+
+        })
+
         $(document).on('click', '#lastname', function(){
             console.log('lastname');
             $(this).hide();

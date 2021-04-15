@@ -23,10 +23,12 @@ class GameController extends AbstractController
     public function newGame(
         UserRepository $userRepository
     ): Response {
+        $moi = $this->getUser();
         $users = $userRepository->findAll();
 
         return $this->render('game/index.html.twig', [
-            'users' => $users
+            'users' => $users,
+            'moi' => $moi
         ]);
     }
 
@@ -184,6 +186,14 @@ class GameController extends AbstractController
         $cartesj1 = $round->getUser1BoardCards();
         $cartesj2 = $round->getUser2BoardCards();
         $tableauscore = $round->getScore();
+        $winnedvaluesj1 = $game->getUser1()->getWinnedvalues();
+        $winnedvaluesj2 = $game->getUser2()->getWinnedvalues();
+        $winnedgamesj1 = $game->getUser1()->getWinnedgames();
+        $winnedgamesj2 = $game->getUser2()->getWinnedgames();
+        $lostgamesj1 = $game->getUser1()->getLostgames();
+        $lostgamesj2 = $game->getUser2()->getLostgames();
+        $endedgamesj1 = $game->getUser1()->getEndedgames();
+        $endedgamesj2 = $game->getUser2()->getEndedgames();
         $scorej1points = 0;
         $scorej2points = 0;
         $scorej1valeurs = 0;
@@ -245,57 +255,71 @@ class GameController extends AbstractController
         if ($nbj1Bienveillance > $nbj2Bienveillance){
             $scorej1points += 2;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Bienveillance > $nbj1Bienveillance){
             $scorej2points += 2;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Justice > $nbj2Justice){
             $scorej1points += 2;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Justice > $nbj1Justice){
             $scorej2points += 2;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Sincerite > $nbj2Sincerite){
             $scorej1points += 2;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Sincerite > $nbj1Sincerite){
             $scorej2points += 2;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Loyaute > $nbj2Loyaute){
             $scorej1points += 3;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Loyaute > $nbj1Loyaute){
             $scorej2points += 3;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Respect > $nbj2Respect){
             $scorej1points += 3;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Respect > $nbj1Respect){
             $scorej2points += 3;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Courage > $nbj2Courage){
             $scorej1points += 4;
             $scorej1valeurs ++;
+            $winnedvaluesj1 ++;
         }elseif ($nbj2Courage > $nbj1Courage){
             $scorej2points += 4;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         if ($nbj1Honneur > $nbj2Honneur){
             $scorej1points += 5;
             $scorej1valeurs ++;
-        }elseif ($nbj2Courage > $nbj1Courage){
+            $winnedvaluesj1 ++;
+        }elseif ($nbj2Honneur > $nbj1Honneur){
             $scorej2points += 5;
             $scorej2valeurs ++;
+            $winnedvaluesj2 ++;
         }
 
         dump($nbj1Bienveillance);
@@ -318,16 +342,36 @@ class GameController extends AbstractController
         $tableauscore['user2']['scorepoints'] = $scorej2points;
         $tableauscore['user2']['scorevaleurs'] = $scorej2valeurs;
         dump($tableauscore);
+        $game->getUser1()->setWinnedvalues($winnedvaluesj1);
+        $game->getUser2()->setWinnedvalues($winnedvaluesj2);
         $round->setScore($tableauscore);
         $entityManager->flush();
 
         if ($scorej1valeurs >= 4 || $scorej1points >= 11){
             $user = $game->getUser1();
+            $user2 = $game->getUser2();
+            $winnedgamesj1 ++;
+            $lostgamesj2 ++;
+            $endedgamesj1 ++;
+            $endedgamesj2 ++;
+            $user->setEndedgames($endedgamesj1);
+            $user2->setEndedgames($endedgamesj2);
+            $user->setWinnedgames($winnedgamesj1);
+            $user2->setLostgames($lostgamesj2);
             $game->setWinner($user);
             $entityManager->flush();
             return $this->json(['reponse' => 'j1win', 'scorej1points' => $scorej1points, 'scorej1valeurs' => $scorej1valeurs, 'scorej2points' => $scorej2points, 'scorej2valeurs' => $scorej2valeurs ]);
         }elseif ($scorej2valeurs >= 4 || $scorej2points >= 11){
             $user = $game->getUser2();
+            $user1 = $game->getUser1();
+            $winnedgamesj2 ++;
+            $lostgamesj1 ++;
+            $endedgamesj1 ++;
+            $endedgamesj2 ++;
+            $user->setEndedgames($endedgamesj2);
+            $user1->setEndedgames($endedgamesj1);
+            $user->setWinnedgames($winnedgamesj2);
+            $user1->setLostgames($lostgamesj1);
             $game->setWinner($user);
             $entityManager->flush();
             return $this->json(['reponse' => 'j2win', 'scorej1points' => $scorej1points, 'scorej1valeurs' => $scorej1valeurs, 'scorej2points' => $scorej2points, 'scorej2valeurs' => $scorej2valeurs ]);

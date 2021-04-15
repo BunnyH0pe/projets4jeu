@@ -87,13 +87,13 @@ form #registration_form_avatar {
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  width: 50%;
+  width: 100%;
 }
 form #registration_form_avatar label {
   margin-right: 25px;
 }
 form #registration_form_avatar input {
-  margin: 25px 10px 25px 0;
+  margin: 10px 10px 25px 30px;
 }
 form #registration_form_agreeTerms {
   width: 25px;
@@ -141,6 +141,17 @@ form .button:hover button {
 form .button:hover .button_border {
   left: -5%;
   border: 1px solid white;
+}
+
+.flex-avatar{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.flex-avatar img{
+  width: 80px;
 }
 
 /*# sourceMappingURL=register.css.map */

@@ -67,4 +67,17 @@ class UserController extends AbstractController
             }
             return $this->json(true);
     }
+
+    /**
+     * @Route("/avatar_modif", name="avatar_modif")
+     */
+    public function avatarModif( EntityManagerInterface $entityManager, Request $request, GameRepository $gameRepository, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $newavatar = $request->request->get('avatar');
+        dump($newavatar);
+        $user->setAvatar($newavatar);
+        $entityManager->flush();
+        return $this->json(true);
+    }
 }

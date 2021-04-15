@@ -38,6 +38,17 @@
         $(this).css('transform', 'scale(1.2)');
       }
     })
+
+    $(document).on('click', '.groups', function(){
+      if ($(this).find('input[type=radio]').prop('checked')){
+        $(this).find('input[type=radio]').prop('checked',false);
+        $(this).css('transform', 'scale(1)');
+        console.log('on decoche');
+      }else{
+        $(this).find('input[type=radio]').prop('checked',true);
+        $(this).css('transform', 'scale(1.2)');
+      }
+    })
   })
 
   function refreshGame() {
@@ -78,7 +89,7 @@
 
               }
             })
-          },5000)
+          },3000)
           clearInterval(boucle)
         }
       },
@@ -159,9 +170,12 @@
   {# Validation première sélection échange #}
   $(document).on('click', '#selectpremierdouble', function(){
     $('#selectpremierdouble').hide();
+    $('.premiergroupe').removeClass('cartechoisiesechange');
+    $('.premiergroupe').addClass('cartevalidesechange');
+    $('.deuxiemegroupe').addClass('cartechoisiesechange');
     $.each($("input[name='carte_echange']:checked"), function(){
       echange.push($(this).val());
-      $('.'+$(this).val()).hide();
+      $($(this).closest('.cartespan')).hide();
       $(this).prop("checked", false);
     });
     console.log(echange)
@@ -171,7 +185,7 @@
   $(document).on('click', '#validerdouble', function(){
     $.each($("input[name='carte_echange']:checked"), function(){
       echange.push($(this).val());
-      $('.'+$(this).val()).hide();
+      $($(this).closest('.cartespan')).hide();
       $(this).prop("checked", false);
     });
     console.log(echange)

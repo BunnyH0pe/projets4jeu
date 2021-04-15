@@ -56,6 +56,7 @@ class RegistrationFormType extends AbstractType
                     '2' => 'avatar2.png',
                     '3' => 'avatar3.png',
                 ],
+                'label' => false,
             ])
             ->add('gender', ChoiceType::class,[
                 'choices' => [

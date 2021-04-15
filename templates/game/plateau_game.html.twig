@@ -185,14 +185,14 @@
 
 <div class="echangePop" style="display: none">
     <h4>Choisissez un premier groupe de deux cartes :</h4>
-    <div style="display: flex;">
-        <div class="grp-1" style="display: flex; margin-right: 30px;">
-            <div style="height: 140px; width: 100px; background-color: red; border: 1px solid black; margin-right: 20px;"></div>
-            <div style="height: 140px; width: 100px; background-color: red; border: 1px solid black;"></div>
+    <div class="flex-echange-prop">
+        <div class="grp-1">
+            <div class="cartechoisiesechange premiergroupe" style="margin-right: 20px"></div>
+            <div class="cartechoisiesechange premiergroupe"></div>
         </div>
-        <div class="grp-2" style="display: flex">
-            <div style="height: 140px; width: 100px; border: 1px solid black; margin-right: 20px;"></div>
-            <div style="height: 140px; width: 100px; border: 1px solid black; "></div>
+        <div class="grp-2">
+            <div class="deuxiemegroupe" style="margin-right: 20px;"></div>
+            <div class="deuxiemegroupe"></div>
         </div>
     </div>
     <div>
@@ -234,51 +234,92 @@
     {% if adversaire.actions.ECHANGE.cartesInitiales != [] %}
         {% if adversaire.actions.ECHANGE.cartesAdversaire == [] %}
             <div class="popup-echange">
-                <h4>Choissisez un doublon</h4>
-                <div class="groupe1" style="display: flex">
-                    {% for card in adversaire.actions.ECHANGE.cartesInitiales.premierdouble %}
-                            <div class="col-1">
-                                <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
+                <div class="overlay">
+                    <div class="contenu-pop-interne">
+                        <h4>Choisissez un groupe de cartes :</h4>
+                        <div class="flex-echange-doubles">
+                            <div class="groupe1 groups">
+                                {% for card in adversaire.actions.ECHANGE.cartesInitiales.premierdouble %}
+                                        <div class="carte">
+                                            <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" alt="Carte n°{{ cards[card].id }}">
+                                        </div>
+                                {% endfor %}
+                                <input style="display: none" type="radio" name="carteschoisiesechange" value="groupe1">
                             </div>
-                    {% endfor %}
-                    <input type="radio" name="carteschoisiesechange" value="groupe1">
-                </div>
-                <div class="groupe2" style="display: flex">
-                    {% for card in adversaire.actions.ECHANGE.cartesInitiales.deuxiemedouble %}
-                        <div class="col-1">
-                            <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" style="width: 60px;" alt="Carte n°{{ cards[card].id }}">
+                            <div class="groupe2 groups">
+                                {% for card in adversaire.actions.ECHANGE.cartesInitiales.deuxiemedouble %}
+                                    <div class="carte">
+                                        <img src=" {{ asset('img_carte_jeu/'~cards[card].picture) }}" alt="Carte n°{{ cards[card].id }}">
+                                    </div>
+                                {% endfor %}
+                                <input style="display: none" type="radio" name="carteschoisiesechange" value="groupe2">
+                            </div>
                         </div>
-                    {% endfor %}
-                    <input type="radio" name="carteschoisiesechange" value="groupe2">
+                        <button class="col-2" id="validechange">Valider mon choix</button>
+                    </div>
                 </div>
-                <br>
-                <button class="col-2" id="validechange">Valider mon choix</button>
             </div>
         {% endif %}
     {% endif %}
 {% endif %}
 
 <div id="ecranfinj1" style="display: none">
+    <div class="overlay">
+        <div class="jeuinterne">
     {% if app.user.id == game.user1.id %}
-        <p>Vous avez gagné la partie</p>
+        <h4>VICTOIRE</h4>
+        <div class="flex-fin">
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user1.pseudo }}</p><p class="scorej1"></p></div>
+            <div class="colomn-flex-mid"> - </div>
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user2.pseudo }}</p><p class="scorej2"></p></div>
+        </div>
         <p class="scorej1"></p> - <p class="scorej2"></p>
     {% elseif app.user.id != game.user1.id %}
-        <p>Vous avez perdu la partie</p>
-        <p class="scorej1"></p> - <p class="scorej2"></p>
+        <h4>DÉFAITE</h4>
+        <div class="flex-fin">
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user1.pseudo }}</p><p class="scorej1"></p></div>
+            <div class="colomn-flex-mid"> - </div>
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user2.pseudo }}</p><p class="scorej2"></p></div>
+        </div>
     {% endif %}
+            <a href="{{ path('user_profil') }}">Retour au profil</a>
+        </div>
+    </div>
 </div>
 
 <div id="ecranfinj2" style="display: none">
+    <div class="overlay">
+        <div class="jeuinterne">
     {% if app.user.id == game.user1.id %}
-        <p>Vous avez perdu la partie</p>
-        <p class="scorej1"></p> - <p class="scorej2"></p>
+        <h4>DEFAITE</h4>
+        <div class="flex-fin">
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user1.pseudo }}</p><p class="scorej1"></p></div>
+            <div class="colomn-flex-mid"> - </div>
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user2.pseudo }}</p><p class="scorej2"></p></div>
+        </div>
     {% elseif app.user.id != game.user1.id %}
-        <p>Vous avez gagné la partie</p>
-        <p class="scorej1"></p> - <p class="scorej2"></p>
+        <h4>VICTOIRE</h4>
+        <div class="flex-fin">
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user1.pseudo }}</p><p class="scorej1"></p></div>
+            <div class="colomn-flex-mid"> - </div>
+            <div class="colomn-flex"><p class="utilisateurname">{{ game.user2.pseudo }}</p><p class="scorej2"></p></div>
+        </div>
     {% endif %}
+            <a href="{{ path('user_profil') }}">Retour au profil</a>
+        </div>
+    </div>
 </div>
 
 <div id="ecrannewround" style="display: none">
-    <a href="#">Round suivant !</a>
-    <p class="scorej1"></p> - <p class="scorej2"></p>
+    <div class="overlay">
+        <div class="jeuinterne">
+            <h4>ÉGALITÉ</h4>
+            <div class="flex-fin">
+                <div class="colomn-flex"><p class="utilisateurname">{{ game.user1.pseudo }}</p><p class="scorej1"></p></div>
+                <div class="colomn-flex-mid"> - </div>
+                <div class="colomn-flex"><p class="utilisateurname">{{ game.user2.pseudo }}</p><p class="scorej2"></p></div>
+            </div>
+            <a href="#">Round suivant !</a>
+        </div>
+    </div>
 </div>

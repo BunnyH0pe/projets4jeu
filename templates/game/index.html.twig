@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GameController!{% endblock %}
+{% block title %}Hagakure - Nouvelle partie!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/newgame.css') }}"> <!--LINK TO THE CSS-->
+{% endblock %}
 
 {% block body %}
 <form action="{{ path('create_game') }}" method="post">
-    <div>
-        Moi
-    </div>
-
-    <div>
-        <label for="user2">Contre :</label>
-        <select name="user2" id="user2">
-            <option value="">Choisir le joueur 2</option>
-            {% for user in users|filter(user => user.id != app.user.id) %}
-                <option value="{{ user.id }}">{{ user.pseudo }}</option>
-            {% endfor %}
-        </select>
+    <div class="flex-newgame">
+        <div class="mon-profil">
+            <img src="{{ asset('avatar/'~moi.avatar ) }}" alt="mon avatar">
+            <h2>{{ moi.pseudo }}</h2>
+        </div>
+        <div class="flexmid"> <h2>Contre</h2></div>
+        <div class="flex-adversaire">
+            <select name="user2" id="user2">
+                <option value="">Choisir le joueur 2</option>
+                {% for user in users|filter(user => user.id != app.user.id) %}
+                    <option value="{{ user.id }}">{{ user.pseudo }}</option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
 
     <button type="submit">Commencer la partie</button>
