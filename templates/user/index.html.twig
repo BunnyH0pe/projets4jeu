@@ -114,55 +114,30 @@
             </div>
         </div>
     </section>
-    {# <h1>Bonjour {{ user.firstName }}</h1>
-    <!--<img src="{{ asset('img_avatar/'~ user.avatar) }}" alt="image de profil du joueur">-->
-    <h2>Vos informations personnelles :</h2>
-    <p>Email :<span class="actualinfo" id="email"> {{ user.email }}</span> </p>
-    <p>Nom : <span class="actualinfo" id="lastnameinfo">{{ user.lastName }}</span></p> <button id="lastname">Modifier</button> <div class="modification" id="lastnamemodif" style="display: none;"><input id="inputlastname" type="text" value="{{ user.lastName }}"></div>
-    <p>Prénom : <span class="actualinfo" id="firstnameinfo">{{ user.firstName }}</span></p> <button id="firstname">Modifier</button><div class="modification" id="firstnamemodif" style="display: none;"><input id="inputfirstname" type="text" value="{{ user.firstName }}"></div>
-    <p>Genre : <span class="actualinfo" id="genderinfo">{{ user.gender }}</span></p> <button id="gender">Modifier</button><div class="modification" id="gendermodif" style="display: none;">
-    <select name="inputgender" id="inputgender">
-        {% if user.gender == 'male' %}
-            <option value="male">Homme</option>
-            <option value="female">Femme</option>
-            <option value="undef">Non défini</option>
-        {% elseif user.gender == 'female' %}
-            <option value="female">Femme</option>
-            <option value="male">Homme</option>
-            <option value="undef">Non défini</option>
-        {% else %}
-            <option value="undef">Non défini</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-        {% endif %}
-    </select></div>
-    <p>Date de naissance : <span class="actualinfo" id="birthdayinfo">{{ user.birthday|date("d/m/Y") }}</span></p> <button id="birthday">Modifier</button><div class="modification" id="birthdaymodif" style="display: none;"><input id="inputbirthday" type="date" value="{{ user.birthday|date('d/m/Y') }}"></div>
-    <button id="valider" style="display: none;">Sauvegarder mes changements</button>
-    <p class="reponse" id="reponse" style="display: none;"></p>
-    <p>Vos parties</p>
-    <br>
-
-    {% for games in playedgames %}
-        {% for infogame in games|sort|reverse %}
-            <div>
-                <p>Partie n°{{ infogame.id }}</p>
-                {% if infogame.user1.id == user.id %}
-                    <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user2.firstName }} {{ infogame.user2.firstName }}</p>
-                {% else %}
-                    <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user1.firstName }} {{ infogame.user1.firstName }}</p>
-                {% endif %}
-                <span>{{ infogame.created|date("Y-m-d H:i:s") }}</span>
-                {% if infogame.winner != NULL %}
-                    <span> - {{ infogame.ended|date("Y-m-d H:i:s") }}</span>
-                    <p>Le joueur {{ infogame.winner.firstName }} a gagné !</p>
-                {% else %}
-                    <p>Partie non terminée !</p><a href="{{ path('show_game',{game: infogame.id})}}">Rejoindre dès maintenant !</a>
-                {% endif %}
-            </div>
-            <br>
+    <section id="historique">
+        <p>Vos parties</p>
+        <br>
+        {% for games in playedgames %}
+            {% for infogame in games|sort|reverse %}
+                <div>
+                    <p>Partie n°{{ infogame.id }}</p>
+                    {% if infogame.user1.id == user.id %}
+                        <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user2.firstName }} {{ infogame.user2.firstName }}</p>
+                    {% else %}
+                        <p>{{ user.firstName }} {{ user.lastName }} CONTRE {{ infogame.user1.firstName }} {{ infogame.user1.firstName }}</p>
+                    {% endif %}
+                    <span>{{ infogame.created|date("Y-m-d H:i:s") }}</span>
+                    {% if infogame.winner != NULL %}
+                        <span> - {{ infogame.ended|date("Y-m-d H:i:s") }}</span>
+                        <p>Le joueur {{ infogame.winner.firstName }} a gagné !</p>
+                    {% else %}
+                        <p>Partie non terminée !</p><a href="{{ path('show_game',{game: infogame.id})}}">Rejoindre dès maintenant !</a>
+                    {% endif %}
+                </div>
+                <br>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-    #}
+    </section>
 {% endblock %}
 {% block javascripts %}
     <script>

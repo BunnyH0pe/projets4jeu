@@ -68,8 +68,8 @@ body {
 
 #b_game {
   position: relative;
-  width: 720px;
-  height: 480px;
+  width: 1080px;
+  height: 610px;
   max-height: 100vh;
   border: solid white 1px;
 }
@@ -77,14 +77,55 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 720px;
-  height: 480px;
+  width: 1080px;
+  height: 610px;
   max-height: 100vh;
   background: black;
   right: -0.5vw;
   top: -0.5vw;
   position: absolute;
   overflow: hidden;
+}
+#b_game .bg .button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: fit-content;
+  height: fit-content;
+  transform: translate(-50%, -50%);
+}
+#b_game .bg .button button {
+  position: relative;
+  cursor: pointer;
+  bottom: 0%;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 200px;
+  color: white;
+  font-size: 1.2em;
+  white-space: nowrap;
+  transition: 0.3s;
+  background-color: #BC383D;
+  z-index: 1;
+}
+#b_game .bg .button .button_border {
+  border: 1px solid white;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 75px;
+  width: 200px;
+  z-index: 0;
+  transition: 0.3s;
+}
+#b_game .bg .button:hover button {
+  background: white;
+  color: black;
+}
+#b_game .bg .button:hover .button_border {
+  left: -5%;
+  border: 1px solid white;
 }
 
 /*            HAGAKURE            */
@@ -117,10 +158,11 @@ body {
   justify-content: space-around;
   flex-direction: column;
   background: white;
+  width: 100vw;
 }
 #affrontez h2 {
   font-size: 2.5em;
-  margin: 0px 0 150px 0px;
+  margin: 30px 0 80px 0px;
 }
 #affrontez article {
   display: flex;
@@ -128,6 +170,7 @@ body {
   justify-content: space-around;
   flex-direction: row;
   column-gap: 100px;
+  margin-bottom: 50px;
 }
 #affrontez article div {
   display: flex;

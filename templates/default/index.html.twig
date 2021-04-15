@@ -15,7 +15,15 @@
 
         <h1><span style="color: #BC383D; font-size: 1.5em;">Hagakure</span> , le jeu de cartes des samouraïs</h1>
         <div id="b_game">
-            <div class="bg"></div>
+            <div class="bg">
+                <video width="100%" height="100%" muted autoplay loop>
+                    <source src="{{ asset('video/Gameiyo.mp4') }}" type="video/mp4" />
+                </video>
+                <div class="button">
+                    <a href="#"><button>Jouer</button></a>
+                    <div class="button_border"></div>
+                </div>
+            </div>
         </div>
 
     </section>
@@ -23,8 +31,7 @@
     <section id="hagakure">
         <div>
             <h2>Hagakure ?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta beatae nam quasi, porro libero rerum sit, vitae expedita maxime voluptatem accusamus sequi, amet ex. Distinctio molestiae aliquid voluptas nihil numquam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta beatae nam quasi, porro libero rerum sit, vitae expedita maxime voluptatem accusamus sequi, amet ex. Distinctio molestiae aliquid voluptas nihil numquam.</p>
+            <p>Venez jouer au nouveau jeu Hagakure ! Vous allez adorer ce jeu basé sur les valeurs du bushido ! Incarnez un garçon de l’académie Tokugawa et battez vous pour vous départager de votre ennemi juré afin de devenir l’apprenti du plus grand samouraï du Japon ! Contre un ami ou l’ordinateur, vous ne verrez pas le temps passer dessus !</p>
         </div>
         <img src="{{ asset('images/elements/sam_bleu_fin.png') }}" alt="samourai">
     </section>
