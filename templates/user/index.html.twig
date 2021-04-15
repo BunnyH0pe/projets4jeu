@@ -11,14 +11,13 @@
         <h2>Ma carte de samouraï</h2>
         <div class="container_carte">
             <div class="img_profil">
-                <img src="{{ asset('images/rond.png') }}" alt="Photo de profil">
+                <img src="{{ asset('avatar/'~user.avatar) }}" alt="Photo de profil">
                 <p>Changez votre image de <br>profil en cliquant dessus</p>
             </div>
             <div>
                 <div class="pseudo">
-                    <img src="" alt="">
-                    <h3>Porki</h3>
-                    <p>(Vous ne pouvez changer de pseudo)</p>
+                    <img src="{{ asset('lvl_images/level.svg') }}" alt="">
+                    <h3>{{ user.pseudo }}</h3>
                 </div>
                 <div>
                     <div class="informations_about">

@@ -9,7 +9,6 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background: #1A1F2C;
   font-family: "Nunito", sans-serif;
 }
 
@@ -18,24 +17,28 @@ form .button button, form label, h1 {
   font-weight: lighter;
 }
 
-body {
-  background-color: #1A1F2C !important;
-}
-
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #1A1F2C !important;
+  margin-top: 140px;
+  margin-bottom: 140px;
+  padding-bottom: 50px;
+  width: 600px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 h1 {
   text-align: center;
   color: white;
+  padding-top: 20px;
 }
 
 form {
-  width: 50%;
+  width: 70%;
 }
 form label {
   color: white;
@@ -76,12 +79,12 @@ form .button .button_border {
   transition: 0.3s;
 }
 form .button:hover button {
-  background: #E4D1B5;
+  background: white;
   color: black;
 }
 form .button:hover .button_border {
   left: -5%;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 /*# sourceMappingURL=login.css.map */

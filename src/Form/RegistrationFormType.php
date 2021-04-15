@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Accepter les termes',
                     ]),
                 ],
             ])
@@ -46,14 +46,15 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('pseudo')
             ->add('firstname')
             ->add('lastname')
             ->add('avatar', ChoiceType::class,[
                 'expanded'=> true,
                 'choices' => [
-                    '1' => 'lol.png',
-                    '2' => 'pap.png',
-                    '3' => 'lol.png',
+                    '1' => 'avatar1.png',
+                    '2' => 'avatar2.png',
+                    '3' => 'avatar3.png',
                 ],
             ])
             ->add('gender', ChoiceType::class,[

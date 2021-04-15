@@ -17,32 +17,34 @@
             label: 'E-mail',
             'attr': {'id' : 'registration_form_email'}
         }) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe',
-            'attr':{'id' : 'registration_form_plainPassword'}
-        }) }}
-        {{ form_row(registrationForm.firstname, {
-            label: 'Prénom',
-            'attr':{'id' : 'registration_form_firstname'}
-        }) }}
-        {{ form_row(registrationForm.lastname, {
-            label: 'Nom',
-            'attr':{'id' : 'registration_form_lastname'}
-        }) }}
-        {{ form_row(registrationForm.gender, {
-            label: 'Genre',
-            'attr':{'id' : 'registration_form_gender'}
-        }) }}
-        {{ form_row(registrationForm.birthday, {
-            label: 'Date de naissance',
-            'attr':{'id' : 'registration_form_birthday_day'}
-        }) }}
-        {{ form_row(registrationForm.avatar, {
-            label: 'Avatar'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms, {
-            label: 'Accepter les termes'
-        }) }}
+    {{ form_row(registrationForm.pseudo,{
+        label: 'Pseudo',
+        'attr': {'id' : 'registration_form_pseudo'}
+    }) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Mot de passe',
+        'attr':{'id' : 'registration_form_plainPassword'}
+    }) }}
+    {{ form_row(registrationForm.firstname, {
+        label: 'Prénom',
+        'attr':{'id' : 'registration_form_firstname'}
+    }) }}
+    {{ form_row(registrationForm.lastname, {
+        label: 'Nom',
+        'attr':{'id' : 'registration_form_lastname'}
+    }) }}
+    {{ form_row(registrationForm.gender, {
+        label: 'Genre',
+        'attr':{'id' : 'registration_form_gender'}
+    }) }}
+    {{ form_row(registrationForm.birthday, {
+        label: 'Date de naissance',
+        'attr':{'id' : 'registration_form_birthday_day'}
+    }) }}
+    {{ form_row(registrationForm.avatar, {
+        label: 'Avatar'
+    }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
 
     <div class="button">
         <button class="btn btn-lg btn-primary" type="submit">

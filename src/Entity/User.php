@@ -22,6 +22,12 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pseudo;
+
     /**
     * @ORM\Column(type="string", length=180, unique=true)
     */
@@ -101,13 +107,25 @@ class User implements UserInterface
         return $this->email;
     }
 
-
     public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
+
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
 
     /**
      * A visual identifier that represents this user.

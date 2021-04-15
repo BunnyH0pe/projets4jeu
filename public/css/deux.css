@@ -53,6 +53,7 @@ h2 {
   margin-right: 50px;
 }
 .img_profil img {
+  border-radius: 50%;
   width: 15vw;
 }
 
@@ -61,10 +62,16 @@ h2 {
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+  margin: 0 0 20px 0;
+}
+
+.pseudo img{
+  width: 50px;
+  margin-right: 5px;
 }
 .pseudo h3 {
   font-size: 3em;
-  margin: 0 0 20px 0;
+  margin: 0;
 }
 .pseudo p {
   font-size: 0.8em;
@@ -74,6 +81,19 @@ h2 {
 .informations_about {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+#valider{
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: white;
+  border: black 2px solid;
 }
 
 .informations {
