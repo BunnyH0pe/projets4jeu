@@ -27,7 +27,6 @@ class UserController extends AbstractController
         $gameofuser = [];
         $gameofuser[] = $user->getGames1();
         $gameofuser[] = $user->getGames2();
-        dump($gameofuser[0]);
 
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
@@ -75,7 +74,6 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $newavatar = $request->request->get('avatar');
-        dump($newavatar);
         $user->setAvatar($newavatar);
         $entityManager->flush();
         return $this->json(true);

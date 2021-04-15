@@ -145,15 +145,11 @@ class GameController extends AbstractController
         Game $game, EntityManagerInterface $entityManager
     ): Response {
         $round = $game->getRounds()[0];
-        dump($round->getUser1BoardCards());
         if($round->getPioche()==[] && $round->getUser1HandCards()==[] && $round->getUser2HandCards()==[]){
             $board1 = $round->getUser1BoardCards();
             $board2 = $round->getUser2BoardCards();
             $action1 = $round->getUser1Action();
             $action2 = $round->getUser2Action();
-            dump($action1);
-            dump($action2);
-            dump(count($board1));
             if (count($board1) < 8){
                 $board1[] = $action1['SECRET'][0];
                 $board2[] = $action2['SECRET'][0];
@@ -322,26 +318,10 @@ class GameController extends AbstractController
             $winnedvaluesj2 ++;
         }
 
-        dump($nbj1Bienveillance);
-        dump($nbj1Justice );
-        dump($nbj1Sincerite );
-        dump($nbj1Loyaute );
-        dump($nbj1Respect );
-        dump($nbj1Courage );
-        dump($nbj1Honneur );
-        dump($nbj2Bienveillance );
-        dump($nbj2Justice );
-        dump($nbj2Sincerite );
-        dump($nbj2Loyaute );
-        dump($nbj2Respect );
-        dump($nbj2Courage );
-        dump($nbj2Honneur);
-
         $tableauscore['user1']['scorepoints'] = $scorej1points;
         $tableauscore['user1']['scorevaleurs'] = $scorej1valeurs;
         $tableauscore['user2']['scorepoints'] = $scorej2points;
         $tableauscore['user2']['scorevaleurs'] = $scorej2valeurs;
-        dump($tableauscore);
         $game->getUser1()->setWinnedvalues($winnedvaluesj1);
         $game->getUser2()->setWinnedvalues($winnedvaluesj2);
         $round->setScore($tableauscore);
@@ -400,11 +380,8 @@ class GameController extends AbstractController
         $handj2 = $round->getUser2HandCards();
         if(!empty($pioche)){
             $carte = array_pop($pioche);
-        }else{
-            dump('plus de pioche');
         }
         if ($event == 'clicked'){
-            dump($game->getQuiJoue());
             if ($game->getQuiJoue() == $joueur1){
                 if (isset($carte)){
                     $handj2[]=$carte;
@@ -448,12 +425,10 @@ class GameController extends AbstractController
         } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
             $moi['handCards'] = $game->getRounds()[0]->getUser2HandCards();
             $moi['actions'] = $game->getRounds()[0]->getUser2Action();
-            dump($moi['actions']);
             $moi['board'] = $game->getRounds()[0]->getUser2BoardCards();
             $adversaire['handCards'] = $game->getRounds()[0]->getUser1HandCards();
             $adversaire['actions'] = $game->getRounds()[0]->getUser1Action();
             $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
-            dump($moi['board']);
         } else {
             //redirection... je ne suis pas l'un des deux joueurs
         }
@@ -533,7 +508,6 @@ class GameController extends AbstractController
                 }
                 break;
             case 'offre':
-                dump($round->getPioche());
                 $carte1 = $request->request->get('carte1');
                 $carte2 = $request->request->get('carte2');
                 $carte3 = $request->request->get('carte3');
@@ -614,7 +588,6 @@ class GameController extends AbstractController
                     $boardUser1 = $round->getUser1BoardCards();
                     $boardUser2 = $round->getUser2BoardCards();
                     $actions['OFFRE']['cartesAdversaire'] = [$carte];
-                    dump($actions['OFFRE']['cartesInitiales']);
                     $indexCarte = array_search($carte, $actions['OFFRE']['cartesInitiales']);
                     unset($actions['OFFRE']['cartesInitiales'][$indexCarte]); //je supprime les cartes de ma main
                     $boardUser2[] = array_pop($actions['OFFRE']['cartesAdversaire']);
@@ -656,15 +629,11 @@ class GameController extends AbstractController
                     if ($groupe == 'groupe1'){
                         $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
-                        dump($actions['ECHANGE']['cartesInitiales']);
-                        dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
                     if ($groupe == 'groupe2'){
                         $actions['ECHANGE']['cartesAdversaire'] = $actions['ECHANGE']['cartesInitiales']['deuxiemedouble'];
                         $actions['ECHANGE']['cartesInitiales'] = $actions['ECHANGE']['cartesInitiales']['premierdouble'];
-                        dump($actions['ECHANGE']['cartesInitiales']);
-                        dump($actions['ECHANGE']['cartesAdversaire']);
                         unset($actions['ECHANGE']['cartesInitiales']['premierdouble'], $actions['ECHANGE']['cartesInitiales']['deuxiemedouble']);
                     }
                     $boardUser2[] = array_pop($actions['ECHANGE']['cartesAdversaire']);
