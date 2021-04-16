@@ -37,6 +37,10 @@ class RegistrationController extends AbstractController
 
             $user->setRoles($rolebase);
             $user->setAge($age);
+            $user->setEndedgames(0);
+            $user->setLostgames(0);
+            $user->setWinnedgames(0);
+            $user->setWinnedvalues();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
